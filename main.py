@@ -1,6 +1,8 @@
+from doctest import master
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+from openpyxl.styles.borders import Border, Side
 import datetime
 from PIL import ImageTk
 from PIL import Image
@@ -12,6 +14,9 @@ import pickle
 from PIL import ImageGrab
 from openpyxl.reader.excel import load_workbook
 import os.path
+import gc
+
+gc.disable()
 
 # main window
 window = Tk()
@@ -178,7 +183,10 @@ def usr_log_in():
             item_box = Entry(add_frame, width=49)
             item_box.grid(row=1, column=0)
 
-            clause_box = Entry(add_frame, width=30, justify='center')
+            # clause_box = Entry(add_frame, width=30, justify='center')
+            clause = StringVar()
+            clause_box = ttk.Combobox(add_frame, width=18, textvariable=clause, justify='center')
+            clause_box.config(values=('D.12', 'D.25', 'F.3.5', 'F.3.7', 'F.3.8', 'F.3.15', 'F.3.16', 'F.8.1', 'F.8.4', 'F.10.1', 'G.3.1', 'G.3.3.a', 'L.4', 'L.17', 'S.2', 'S.11.1', 'S.1', 'U.3.1'))
             clause_box.grid(row=1, column=1)
 
             unit = StringVar()
@@ -1300,31 +1308,31 @@ def usr_log_in():
                     r23c2.insert(0, 0)
                     rate_box.insert(0, 0)
 
-                    r1c3.insert(0, 0)
-                    r2c3.insert(0, 0)
-                    r3c3.insert(0, 0)
-                    r4c3.insert(0, 0)
-                    r5c3.insert(0, 0)
-                    r6c3.insert(0, 0)
-                    r7c3.insert(0, 0)
-                    r8c3.insert(0, 0)
-                    r9c3.insert(0, 0)
-                    r10c3.insert(0, 0)
-                    r11c3.insert(0, 0)
-                    r12c3.insert(0, 0)
-                    r13c3.insert(0, 0)
-                    r14c3.insert(0, 0)
-                    r15c3.insert(0, 0)
-                    r16c3.insert(0, 0)
-                    r17c3.insert(0, 0)
-                    r18c3.insert(0, 0)
-                    r19c3.insert(0, 0)
-                    r20c3.insert(0, 0)
-                    r21c3.insert(0, 0)
-                    r22c3.insert(0, 0)
-                    r23c3.insert(0, 0)
-                    r24c3.insert(0, 0)
-                    r25c3.insert(0, 0)
+                    r1c3.insert(0, '')
+                    r2c3.insert(0, '')
+                    r3c3.insert(0, '')
+                    r4c3.insert(0, '')
+                    r5c3.insert(0, '')
+                    r6c3.insert(0, '')
+                    r7c3.insert(0, '')
+                    r8c3.insert(0, '')
+                    r9c3.insert(0, '')
+                    r10c3.insert(0, '')
+                    r11c3.insert(0, '')
+                    r12c3.insert(0, '')
+                    r13c3.insert(0, '')
+                    r14c3.insert(0, '')
+                    r15c3.insert(0, '')
+                    r16c3.insert(0, '')
+                    r17c3.insert(0, '')
+                    r18c3.insert(0, '')
+                    r19c3.insert(0, '')
+                    r20c3.insert(0, '')
+                    r21c3.insert(0, '')
+                    r22c3.insert(0, '')
+                    r23c3.insert(0, '')
+                    r24c3.insert(0, '')
+                    r25c3.insert(0, '')
 
                 def unit_confirm():
                     calculation_frame.place(x=10, y=131)
@@ -1462,31 +1470,31 @@ def usr_log_in():
                         r23c2.insert(0, 0)
                         rate_box.insert(0, 0)
 
-                        r1c3.insert(0, 0)
-                        r2c3.insert(0, 0)
-                        r3c3.insert(0, 0)
-                        r4c3.insert(0, 0)
-                        r5c3.insert(0, 0)
-                        r6c3.insert(0, 0)
-                        r7c3.insert(0, 0)
-                        r8c3.insert(0, 0)
-                        r9c3.insert(0, 0)
-                        r10c3.insert(0, 0)
-                        r11c3.insert(0, 0)
-                        r12c3.insert(0, 0)
-                        r13c3.insert(0, 0)
-                        r14c3.insert(0, 0)
-                        r15c3.insert(0, 0)
-                        r16c3.insert(0, 0)
-                        r17c3.insert(0, 0)
-                        r18c3.insert(0, 0)
-                        r19c3.insert(0, 0)
-                        r20c3.insert(0, 0)
-                        r21c3.insert(0, 0)
-                        r22c3.insert(0, 0)
-                        r23c3.insert(0, 0)
-                        r24c3.insert(0, 0)
-                        r25c3.insert(0, 0)
+                        r1c3.insert(0, '')
+                        r2c3.insert(0, '')
+                        r3c3.insert(0, '')
+                        r4c3.insert(0, '')
+                        r5c3.insert(0, '')
+                        r6c3.insert(0, '')
+                        r7c3.insert(0, '')
+                        r8c3.insert(0, '')
+                        r9c3.insert(0, '')
+                        r10c3.insert(0, '')
+                        r11c3.insert(0, '')
+                        r12c3.insert(0, '')
+                        r13c3.insert(0, '')
+                        r14c3.insert(0, '')
+                        r15c3.insert(0, '')
+                        r16c3.insert(0, '')
+                        r17c3.insert(0, '')
+                        r18c3.insert(0, '')
+                        r19c3.insert(0, '')
+                        r20c3.insert(0, '')
+                        r21c3.insert(0, '')
+                        r22c3.insert(0, '')
+                        r23c3.insert(0, '')
+                        r24c3.insert(0, '')
+                        r25c3.insert(0, '')
 
                         # reload entre box
                         r1c1.grid(row=0, column=0)
@@ -1660,31 +1668,31 @@ def usr_log_in():
                         r23c2.insert(0, 0)
                         rate_box.insert(0, 0)
 
-                        r1c3.insert(0, 0)
-                        r2c3.insert(0, 0)
-                        r3c3.insert(0, 0)
-                        r4c3.insert(0, 0)
-                        r5c3.insert(0, 0)
-                        r6c3.insert(0, 0)
-                        r7c3.insert(0, 0)
-                        r8c3.insert(0, 0)
-                        r9c3.insert(0, 0)
-                        r10c3.insert(0, 0)
-                        r11c3.insert(0, 0)
-                        r12c3.insert(0, 0)
-                        r13c3.insert(0, 0)
-                        r14c3.insert(0, 0)
-                        r15c3.insert(0, 0)
-                        r16c3.insert(0, 0)
-                        r17c3.insert(0, 0)
-                        r18c3.insert(0, 0)
-                        r19c3.insert(0, 0)
-                        r20c3.insert(0, 0)
-                        r21c3.insert(0, 0)
-                        r22c3.insert(0, 0)
-                        r23c3.insert(0, 0)
-                        r24c3.insert(0, 0)
-                        r25c3.insert(0, 0)
+                        r1c3.insert(0, '')
+                        r2c3.insert(0, '')
+                        r3c3.insert(0, '')
+                        r4c3.insert(0, '')
+                        r5c3.insert(0, '')
+                        r6c3.insert(0, '')
+                        r7c3.insert(0, '')
+                        r8c3.insert(0, '')
+                        r9c3.insert(0, '')
+                        r10c3.insert(0, '')
+                        r11c3.insert(0, '')
+                        r12c3.insert(0, '')
+                        r13c3.insert(0, '')
+                        r14c3.insert(0, '')
+                        r15c3.insert(0, '')
+                        r16c3.insert(0, '')
+                        r17c3.insert(0, '')
+                        r18c3.insert(0, '')
+                        r19c3.insert(0, '')
+                        r20c3.insert(0, '')
+                        r21c3.insert(0, '')
+                        r22c3.insert(0, '')
+                        r23c3.insert(0, '')
+                        r24c3.insert(0, '')
+                        r25c3.insert(0, '')
                         # reload entre box
                         r1c1.grid(row=0, column=0)
                         r2c1.grid(row=1, column=0)
@@ -1853,31 +1861,31 @@ def usr_log_in():
                         r22c2.insert(0, 0)
                         r23c2.insert(0, 0)
 
-                        r1c3.insert(0, 0)
-                        r2c3.insert(0, 0)
-                        r3c3.insert(0, 0)
-                        r4c3.insert(0, 0)
-                        r5c3.insert(0, 0)
-                        r6c3.insert(0, 0)
-                        r7c3.insert(0, 0)
-                        r8c3.insert(0, 0)
-                        r9c3.insert(0, 0)
-                        r10c3.insert(0, 0)
-                        r11c3.insert(0, 0)
-                        r12c3.insert(0, 0)
-                        r13c3.insert(0, 0)
-                        r14c3.insert(0, 0)
-                        r15c3.insert(0, 0)
-                        r16c3.insert(0, 0)
-                        r17c3.insert(0, 0)
-                        r18c3.insert(0, 0)
-                        r19c3.insert(0, 0)
-                        r20c3.insert(0, 0)
-                        r21c3.insert(0, 0)
-                        r22c3.insert(0, 0)
-                        r23c3.insert(0, 0)
-                        r24c3.insert(0, 0)
-                        r25c3.insert(0, 0)
+                        r1c3.insert(0, '')
+                        r2c3.insert(0, '')
+                        r3c3.insert(0, '')
+                        r4c3.insert(0, '')
+                        r5c3.insert(0, '')
+                        r6c3.insert(0, '')
+                        r7c3.insert(0, '')
+                        r8c3.insert(0, '')
+                        r9c3.insert(0, '')
+                        r10c3.insert(0, '')
+                        r11c3.insert(0, '')
+                        r12c3.insert(0, '')
+                        r13c3.insert(0, '')
+                        r14c3.insert(0, '')
+                        r15c3.insert(0, '')
+                        r16c3.insert(0, '')
+                        r17c3.insert(0, '')
+                        r18c3.insert(0, '')
+                        r19c3.insert(0, '')
+                        r20c3.insert(0, '')
+                        r21c3.insert(0, '')
+                        r22c3.insert(0, '')
+                        r23c3.insert(0, '')
+                        r24c3.insert(0, '')
+                        r25c3.insert(0, '')
                         rate_box.insert(0, 0)
                         # reload entry box
                         r1c1.grid(row=0, column=0)
@@ -2052,31 +2060,31 @@ def usr_log_in():
                         r22c2.insert(0, 0)
                         r23c2.insert(0, 0)
 
-                        r1c3.insert(0, 0)
-                        r2c3.insert(0, 0)
-                        r3c3.insert(0, 0)
-                        r4c3.insert(0, 0)
-                        r5c3.insert(0, 0)
-                        r6c3.insert(0, 0)
-                        r7c3.insert(0, 0)
-                        r8c3.insert(0, 0)
-                        r9c3.insert(0, 0)
-                        r10c3.insert(0, 0)
-                        r11c3.insert(0, 0)
-                        r12c3.insert(0, 0)
-                        r13c3.insert(0, 0)
-                        r14c3.insert(0, 0)
-                        r15c3.insert(0, 0)
-                        r16c3.insert(0, 0)
-                        r17c3.insert(0, 0)
-                        r18c3.insert(0, 0)
-                        r19c3.insert(0, 0)
-                        r20c3.insert(0, 0)
-                        r21c3.insert(0, 0)
-                        r22c3.insert(0, 0)
-                        r23c3.insert(0, 0)
-                        r24c3.insert(0, 0)
-                        r25c3.insert(0, 0)
+                        r1c3.insert(0, '')
+                        r2c3.insert(0, '')
+                        r3c3.insert(0, '')
+                        r4c3.insert(0, '')
+                        r5c3.insert(0, '')
+                        r6c3.insert(0, '')
+                        r7c3.insert(0, '')
+                        r8c3.insert(0, '')
+                        r9c3.insert(0, '')
+                        r10c3.insert(0, '')
+                        r11c3.insert(0, '')
+                        r12c3.insert(0, '')
+                        r13c3.insert(0, '')
+                        r14c3.insert(0, '')
+                        r15c3.insert(0, '')
+                        r16c3.insert(0, '')
+                        r17c3.insert(0, '')
+                        r18c3.insert(0, '')
+                        r19c3.insert(0, '')
+                        r20c3.insert(0, '')
+                        r21c3.insert(0, '')
+                        r22c3.insert(0, '')
+                        r23c3.insert(0, '')
+                        r24c3.insert(0, '')
+                        r25c3.insert(0, '')
                         # reload entre box
                         r1c1.grid(row=0, column=0)
                         r2c1.grid(row=1, column=0)
@@ -2225,7 +2233,7 @@ def usr_log_in():
 
                 def save():
                     filepath = "my_image.png"
-                    ss = ImageGrab.grab(bbox=(595, 193, 898, 658))
+                    ss = ImageGrab.grab(bbox=(785, 250, 1100, 817))
                     ss.save(filepath, "PNG")
 
                     MsgBox = messagebox.askquestion(message='DO YOU WANT TO SAVE THE DATA TO EXCEL ?')
@@ -2334,48 +2342,52 @@ def usr_log_in():
                             sheet = file.worksheets[0]
                             sheet.title = '1'
 
-                        sheet.merge_cells('A1:B1')
-                        sheet.merge_cells('C1:D1')
-                        sheet.merge_cells('E1:F1')
-                        sheet.merge_cells('G1:H1')
-                        sheet.merge_cells('A2:B2')
-                        sheet.merge_cells('C2:D2')
-                        sheet.merge_cells('E2:F2')
-                        sheet.merge_cells('G2:H2')
-                        sheet.merge_cells('A3:F3')
-                        sheet.merge_cells('A4:F4')
-                        sheet.merge_cells('A5:F5')
-                        sheet.merge_cells('A6:F6')
-                        sheet.merge_cells('G2:H2')
-                        sheet.merge_cells('G3:H3')
-                        sheet.merge_cells('G4:H4')
-                        sheet.merge_cells('G5:H5')
-                        sheet.merge_cells('G6:H6')
-                        sheet.merge_cells('G7:H7')
-                        sheet.merge_cells('G8:H8')
-                        sheet.merge_cells('G9:H9')
-                        sheet.merge_cells('G10:H10')
-                        sheet.merge_cells('G11:H11')
-                        sheet.merge_cells('G12:H12')
-                        sheet.merge_cells('G14:H14')
-                        sheet.merge_cells('G13:H13')
-                        sheet.merge_cells('G15:H15')
-                        sheet.merge_cells('G16:H16')
-                        sheet.merge_cells('G17:H17')
-                        sheet.merge_cells('G18:H18')
-                        sheet.merge_cells('G19:H19')
-                        sheet.merge_cells('G20:H20')
-                        sheet.merge_cells('G21:H21')
-                        sheet.merge_cells('G22:H22')
+                        sheet.merge_cells('A1:B1')  # JOB Heading
+                        sheet.merge_cells('C1:D1')  # BIL NO Heading
+                        sheet.merge_cells('E1:F1')  # ELEMENT NO HEADING
+                        sheet.merge_cells('G1:H1')  # SLIP NO HEADING
+                        sheet.merge_cells('A2:B2')  # job data
+                        sheet.merge_cells('C2:D2')  # bill no data
+                        sheet.merge_cells('E2:F2')  # element no data
+                        sheet.merge_cells('G2:H2')  # slip no data
+                        sheet.merge_cells('A3:F3')  # 'HEADING' 
+                        sheet.merge_cells('A4:F5')  # heading data
+                        sheet.merge_cells('A6:F6')  # 'DESCRIPTION'
+                        sheet.merge_cells('A7:F8')  # description data
+                        sheet.merge_cells('G2:H2')  # slipno data
+                        sheet.merge_cells('G3:H3')  # 'UNIT'
+                        sheet.merge_cells('G4:H5')  # unit data
+                        sheet.merge_cells('G5:H5')  # empty
+                        sheet.merge_cells('G6:H6')  # 'QUANTITY'
+                        sheet.merge_cells('G7:H7')  # qty data
+                        sheet.merge_cells('G8:H8')  # 'TAKER OFF'
+                        sheet.merge_cells('G9:H9')  # Taker off data
+                        sheet.merge_cells('G10:H10')  # 'SQD'
+                        sheet.merge_cells('G11:H11')    # sqd data
+                        sheet.merge_cells('G12:H12')    # 'CH.SQD'
+                        sheet.merge_cells('G13:H13')    # ch sqd data
+                        sheet.merge_cells('G15:H15')    # red data
+                        sheet.merge_cells('G14:H14')    # 'RED'
+                        sheet.merge_cells('G16:H16')    # 'RATE'
+                        sheet.merge_cells('G17:H17')    # rate data
+                        sheet.merge_cells('G18:H18')    # 'TOTAL COST'
+                        sheet.merge_cells('G19:H19')    # total cost data
+                        sheet.merge_cells('G20:H20')    # 'DATE AND TIME'
+                        sheet.merge_cells('G21:H21')    # date & time
+                        sheet.merge_cells('G22:H22')    # empty
+                        sheet.merge_cells('G23:H23')    # empty
+                        sheet.merge_cells('D9:F9')    # empty
 
                         sheet["A1"].alignment = Alignment(horizontal="center")
                         sheet['C1'].alignment = Alignment(horizontal="center")
                         sheet['E1'].alignment = Alignment(horizontal="center")
                         sheet['G1'].alignment = Alignment(horizontal="center")
                         sheet['A3'].alignment = Alignment(horizontal="center")
+                        sheet['A4'].alignment = Alignment(horizontal="center", vertical="center")
                         sheet['G3'].alignment = Alignment(horizontal="center")
                         sheet['G5'].alignment = Alignment(horizontal="center")
-                        sheet['A5'].alignment = Alignment(horizontal="center")
+                        sheet['A6'].alignment = Alignment(horizontal="center")
+                        sheet['A7'].alignment = Alignment(horizontal="center", vertical="center")
                         sheet['G7'].alignment = Alignment(horizontal="center")
                         sheet['G9'].alignment = Alignment(horizontal="center")
                         sheet['G11'].alignment = Alignment(horizontal="center")
@@ -2387,7 +2399,7 @@ def usr_log_in():
                         sheet['C2'].alignment = Alignment(horizontal="center")
                         sheet['E2'].alignment = Alignment(horizontal="center")
                         sheet['G2'].alignment = Alignment(horizontal="center")
-                        sheet['G4'].alignment = Alignment(horizontal="center")
+                        sheet['G4'].alignment = Alignment(horizontal="center", vertical="center")
                         sheet['G6'].alignment = Alignment(horizontal="center")
                         sheet['G8'].alignment = Alignment(horizontal="center")
                         sheet['G10'].alignment = Alignment(horizontal="center")
@@ -2398,13 +2410,14 @@ def usr_log_in():
                         sheet['G20'].alignment = Alignment(horizontal="center")
                         sheet['G21'].alignment = Alignment(horizontal="center")
                         sheet['G22'].alignment = Alignment(horizontal="center")
+                        sheet['G23'].alignment = Alignment(horizontal="center")
 
                         sheet.column_dimensions['A'].width = 13
                         sheet.column_dimensions['B'].width = 13
                         sheet.column_dimensions['C'].width = 15
                         sheet.column_dimensions['D'].width = 20
                         sheet.column_dimensions['E'].width = 3.5
-                        sheet.column_dimensions['F'].width = 20
+                        sheet.column_dimensions['F'].width = 22
                         sheet.column_dimensions['G'].width = 15
                         sheet.column_dimensions['H'].width = 15
                         sheet.column_dimensions['I'].width = 15
@@ -2419,130 +2432,356 @@ def usr_log_in():
                         sheet.cell(row=1, column=7).font = Font(bold=True)
                         sheet.cell(row=3, column=1).font = Font(bold=True)
                         sheet.cell(row=3, column=7).font = Font(bold=True)
-                        sheet.cell(row=5, column=1).font = Font(bold=True)
-                        sheet.cell(row=5, column=7).font = Font(bold=True)
-                        sheet.cell(row=7, column=7).font = Font(bold=True)
-                        sheet.cell(row=9, column=7).font = Font(bold=True)
-                        sheet.cell(row=11, column=7).font = Font(bold=True)
-                        sheet.cell(row=13, column=7).font = Font(bold=True)
-                        sheet.cell(row=15, column=7).font = Font(bold=True)
-                        sheet.cell(row=17, column=7).font = Font(bold=True)
-                        sheet.cell(row=19, column=7).font = Font(bold=True)
-                        sheet.cell(row=21, column=7).font = Font(bold=True)
-                        sheet.cell(row=1, column=7).value = "SLIP NO"
-                        sheet.cell(row=3, column=1).value = "HEADING"
-                        sheet.cell(row=5, column=1).value = "DESCRIPTION"
-                        sheet.cell(row=3, column=7).value = "UNIT"
-                        sheet.cell(row=5, column=7).value = "QUANTITY"
-                        sheet.cell(row=15, column=7).value = "RATE"
-                        sheet.cell(row=17, column=7).value = "TOTAL COST"
-                        sheet.cell(row=9, column=7).value = "SQD"
-                        sheet.cell(row=11, column=7).value = "CH.SQD"
-                        sheet.cell(row=13, column=7).value = "RED"
-                        sheet.cell(row=1, column=3).value = "BIL NO"
-                        sheet.cell(row=1, column=1).value = "JOB"
-                        sheet.cell(row=1, column=5).value = "ELEMENT NO"
-                        sheet.cell(row=7, column=7).value = "TAKER OFF"
-                        sheet.cell(row=19, column=7).value = "DATA AND TIME"
+                        sheet.cell(row=6, column=1).font = Font(bold=True)
+                        sheet.cell(row=6, column=7).font = Font(bold=True)
+                        sheet.cell(row=8, column=7).font = Font(bold=True)
+                        sheet.cell(row=10, column=7).font = Font(bold=True)
+                        sheet.cell(row=12, column=7).font = Font(bold=True)
+                        sheet.cell(row=14, column=7).font = Font(bold=True)
+                        sheet.cell(row=16, column=7).font = Font(bold=True)
+                        sheet.cell(row=18, column=7).font = Font(bold=True)
+                        sheet.cell(row=20, column=7).font = Font(bold=True)
+                        sheet.cell(row=22, column=7).font = Font(bold=True)
+                        sheet.cell(row=1, column=7).value = "SLIP NO :"
+                        sheet.cell(row=3, column=1).value = "HEADING :"
+                        sheet.cell(row=6, column=1).value = "DESCRIPTION :"
+                        sheet.cell(row=3, column=7).value = "UNIT :"
+                        sheet.cell(row=6, column=7).value = "QUANTITY :"
+                        sheet.cell(row=16, column=7).value = "RATE :"
+                        sheet.cell(row=18, column=7).value = "TOTAL COST :"
+                        sheet.cell(row=10, column=7).value = "SQD :"
+                        sheet.cell(row=12, column=7).value = "CH.SQD :"
+                        sheet.cell(row=14, column=7).value = "RED :"
+                        sheet.cell(row=1, column=3).value = "BIL NO :"
+                        sheet.cell(row=1, column=1).value = "JOB :"
+                        sheet.cell(row=1, column=5).value = "ELEMENT NO :"
+                        sheet.cell(row=8, column=7).value = "TAKER OFF :"
+                        sheet.cell(row=20, column=7).value = "DATE AND TIME :"
                         sheet.cell(row=2, column=7).value = slip_no
                         sheet.cell(row=4, column=1).value = heading
-                        sheet.cell(row=6, column=1).value = description
+                        sheet.cell(row=7, column=1).value = description
                         sheet.cell(row=4, column=7).value = unit
-                        sheet.cell(row=6, column=7).value = quantity
-                        sheet.cell(row=16, column=7).value = cost
-                        sheet.cell(row=18, column=7).value = total_cost
-                        sheet.cell(row=10, column=7).value = sqd
-                        sheet.cell(row=12, column=7).value = ch_sqd
-                        sheet.cell(row=14, column=7).value = red
+                        sheet.cell(row=7, column=7).value = quantity
+                        sheet.cell(row=17, column=7).value = cost
+                        sheet.cell(row=19, column=7).value = total_cost
+                        sheet.cell(row=11, column=7).value = sqd
+                        sheet.cell(row=13, column=7).value = ch_sqd
+                        sheet.cell(row=15, column=7).value = red
                         sheet.cell(row=2, column=3).value = bill
                         sheet.cell(row=2, column=1).value = project_name
                         sheet.cell(row=2, column=5).value = element
-                        sheet.cell(row=8, column=7).value = taker
-                        sheet.cell(row=20, column=7).value = current_time
+                        sheet.cell(row=9, column=7).value = taker
+                        sheet.cell(row=21, column=7).value = current_time
+                        
+                        # apply borders
+                        # row 1
+                        sheet.cell(row=1, column=1).border = Border(left=Side(style='thick'), top=Side(style='thick'))
+                        sheet.cell(row=1, column=2).border = Border(right=Side(style='thick'), top=Side(style='thick'))
+                        sheet.cell(row=1, column=3).border = Border(left=Side(style='thick'), top=Side(style='thick'))
+                        sheet.cell(row=1, column=4).border = Border(right=Side(style='thick'), top=Side(style='thick'))
+                        sheet.cell(row=1, column=5).border = Border(left=Side(style='thick'), top=Side(style='thick'))
+                        sheet.cell(row=1, column=6).border = Border(right=Side(style='thick'), top=Side(style='thick'))
+                        sheet.cell(row=1, column=7).border = Border(left=Side(style='thick'), top=Side(style='thick'))
+                        sheet.cell(row=1, column=8).border = Border(right=Side(style='thick'), top=Side(style='thick'))
+                        
+                        # row 2
+                        sheet.cell(row=2, column=1).border = Border(left=Side(style='thick'))
+                        sheet.cell(row=2, column=2).border = Border(right=Side(style='thick'))
+                        sheet.cell(row=2, column=4).border = Border(right=Side(style="thick"))
+                        sheet.cell(row=2, column=6).border = Border(right=Side(style='thick'))
+                        sheet.cell(row=2, column=8).border = Border(right=Side(style='thick'))
+                        
+                        # row 3
+                        sheet.cell(row=3, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"), top=Side(style="thick"))
+                        sheet.cell(row=3, column=2).border = Border(top=Side(style="thick"))
+                        sheet.cell(row=3, column=3).border = Border(top=Side(style="thick"))
+                        sheet.cell(row=3, column=4).border = Border(top=Side(style="thick"))
+                        sheet.cell(row=3, column=5).border = Border(top=Side(style="thick"))
+                        sheet.cell(row=3, column=6).border = Border(right=Side(style="thick"), top=Side(style="thick"))
+                        sheet.cell(row=3, column=7).border = Border(left=Side(style="thick"), top=Side(style="thick"))
+                        sheet.cell(row=3, column=8).border = Border(right=Side(style="thick"), top=Side(style="thick"))
+                        
+                        # row 4
+                        sheet.cell(row=4, column=1).border = Border(left=Side(style="thick"))
+                        sheet.cell(row=4, column=6).border = Border(right=Side(style="thick"))
+                        sheet.cell(row=4, column=7).border = Border(left=Side(style="thick"))
+                        sheet.cell(row=4, column=8).border = Border(right=Side(style="thick"))
+                        
+                        # row 5
+                        sheet.cell(row=5, column=1).border = Border(left=Side(style="thick"))
+                        sheet.cell(row=5, column=6).border = Border(right=Side(style="thick"))
+                        sheet.cell(row=5, column=8).border = Border(right=Side(style="thick"))
 
+                        # row 6
+                        sheet.cell(row=6, column=1).border = Border(left=Side(style="thick"), top=Side(style="thick"))
+                        sheet.cell(row=6, column=2).border = Border(top=Side(style="thick"))
+                        sheet.cell(row=6, column=3).border = Border(top=Side(style="thick"))
+                        sheet.cell(row=6, column=4).border = Border(top=Side(style="thick"))
+                        sheet.cell(row=6, column=5).border = Border(top=Side(style="thick"))
+                        sheet.cell(row=6, column=6).border = Border(right=Side(style="thick"), top=Side(style="thick"))
+                        sheet.cell(row=6, column=7).border = Border(top=Side(style="thick"))
+                        sheet.cell(row=6, column=8).border = Border(right=Side(style="thick"), top=Side(style="thick"))
+
+                        # row 7
+                        sheet.cell(row=7, column=1).border = Border(left=Side(style="thick"))
+                        sheet.cell(row=7, column=6).border = Border(right=Side(style="thick"))
+                        sheet.cell(row=7, column=7).border = Border(bottom=Side(style="thick"))
+                        sheet.cell(row=7, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))
+                        
+                        # row 8
+                        sheet.cell(row=8, column=1).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
+                        sheet.cell(row=8, column=2).border = Border(bottom=Side(style="thick"))
+                        sheet.cell(row=8, column=3).border = Border(bottom=Side(style="thick"))
+                        sheet.cell(row=8, column=4).border = Border(bottom=Side(style="thick"))
+                        sheet.cell(row=8, column=5).border = Border(bottom=Side(style="thick"))
+                        sheet.cell(row=8, column=6).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))
+                        sheet.cell(row=8, column=7).border = Border(left=Side(style="thick"), top=Side(style="thick"))
+                        sheet.cell(row=8, column=8).border = Border(right=Side(style="thick"), top=Side(style="thick"))
+
+                        # row 9
+                        sheet.cell(row=9, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=9, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=9, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=9, column=7).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
+                        sheet.cell(row=9, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))
+                        
+                        # row 10
+                        sheet.cell(row=10, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=10, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=10, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=10, column=7).border = Border(left=Side(style="thick"))
+                        sheet.cell(row=10, column=8).border = Border(right=Side(style="thick"))
+                        
+                        # row 11
+                        sheet.cell(row=11, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=11, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=11, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=11, column=7).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
+                        sheet.cell(row=11, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))
+                        
+                        # row 12
+                        sheet.cell(row=12, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=12, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=12, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=12, column=7).border = Border(left=Side(style="thick"))
+                        sheet.cell(row=12, column=8).border = Border(right=Side(style="thick"))
+                        
+                        # row 13
+                        sheet.cell(row=13, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=13, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=13, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=13, column=7).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
+                        sheet.cell(row=13, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))
+                        
+                        
+                        # row 14
+                        sheet.cell(row=14, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=14, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=14, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=14, column=7).border = Border(left=Side(style="thick"))
+                        sheet.cell(row=14, column=8).border = Border(right=Side(style="thick"))
+                        
+                        # row 15
+                        sheet.cell(row=15, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=15, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=15, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=15, column=7).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
+                        sheet.cell(row=15, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))
+                        
+                        
+                        # row 16
+                        sheet.cell(row=16, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=16, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=16, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=16, column=7).border = Border(left=Side(style="thick"))
+                        sheet.cell(row=16, column=8).border = Border(right=Side(style="thick"))
+                        
+                        # row 17
+                        sheet.cell(row=17, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=17, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=17, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=17, column=7).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
+                        sheet.cell(row=17, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))                        
+                        
+                        
+                        # row 18
+                        sheet.cell(row=18, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=18, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=18, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=18, column=7).border = Border(left=Side(style="thick"))
+                        sheet.cell(row=18, column=8).border = Border(right=Side(style="thick"))
+                        
+                        # row 19
+                        sheet.cell(row=19, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=19, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=19, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=19, column=7).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
+                        sheet.cell(row=19, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))                        
+                                                
+                        # row 20
+                        sheet.cell(row=20, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=20, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=20, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=20, column=7).border = Border(left=Side(style="thick"))
+                        sheet.cell(row=20, column=8).border = Border(right=Side(style="thick"))
+                        
+                        # row 21
+                        sheet.cell(row=21, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=21, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=21, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=21, column=7).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
+                        sheet.cell(row=21, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))    
+                        
+                        # row 22
+                        sheet.cell(row=22, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=22, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=22, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))            
+                        
+                        # row 23
+                        sheet.cell(row=23, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=23, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=23, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))               
+                        
+                        
+                        # row 24
+                        sheet.cell(row=24, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=24, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=24, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        
+                        
+                        # row 25
+                        sheet.cell(row=25, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=25, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=25, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        
+                        # row 26
+                        sheet.cell(row=26, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=26, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=26, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                                                
+                        # row 27
+                        sheet.cell(row=27, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=27, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=27, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                                                
+                        # row 28
+                        sheet.cell(row=28, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=28, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=28, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                                                
+                        # row 29
+                        sheet.cell(row=29, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=29, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=29, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                                                
+                        # row 30
+                        sheet.cell(row=30, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=30, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=30, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                                                
+                        # row 31
+                        sheet.cell(row=31, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=31, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=31, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                                                                        
+                        # row 32
+                        sheet.cell(row=32, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=32, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=32, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                                                                        
+                        # row 33
+                        sheet.cell(row=33, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=33, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=33, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                                                                        
+                        # row 34
+                        sheet.cell(row=34, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=34, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=34, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        
                         img = Image.open("my_image.png")
                         img = openpyxl.drawing.image.Image("my_image.png")
-                        sheet.add_image(img, "D7")
+                        sheet.add_image(img, "D10")
 
                         if unit_box_cb.get() == "m" or unit_box_cb.get() == 'no':
 
-                            sheet.cell(row=7, column=1).value = c1r1
-                            sheet.cell(row=9, column=1).value = c1r3
-                            sheet.cell(row=11, column=1).value = c1r5
-                            sheet.cell(row=13, column=1).value = c1r7
-                            sheet.cell(row=15, column=1).value = c1r9
-                            sheet.cell(row=17, column=1).value = c1r11
-                            sheet.cell(row=19, column=1).value = c1r13
-                            sheet.cell(row=21, column=1).value = c1r15
-                            sheet.cell(row=23, column=1).value = c1r17
-                            sheet.cell(row=25, column=1).value = c1r19
-                            sheet.cell(row=27, column=1).value = c1r21
-                            sheet.cell(row=29, column=1).value = c1r23
-                            sheet.cell(row=7, column=2).value = c2r1
-                            sheet.cell(row=9, column=2).value = c2r3
-                            sheet.cell(row=11, column=2).value = c2r5
-                            sheet.cell(row=13, column=2).value = c2r7
-                            sheet.cell(row=15, column=2).value = c2r9
-                            sheet.cell(row=17, column=2).value = c2r11
-                            sheet.cell(row=19, column=2).value = c2r13
-                            sheet.cell(row=21, column=2).value = c2r15
-                            sheet.cell(row=23, column=2).value = c2r17
-                            sheet.cell(row=25, column=2).value = c2r19
-                            sheet.cell(row=27, column=2).value = c2r21
-                            sheet.cell(row=29, column=2).value = c2r23
-                            sheet.cell(row=8, column=3).value = c3r2
-                            sheet.cell(row=10, column=3).value = c3r4
-                            sheet.cell(row=12, column=3).value = c3r6
-                            sheet.cell(row=14, column=3).value = c3r8
-                            sheet.cell(row=16, column=3).value = c3r10
-                            sheet.cell(row=18, column=3).value = c3r12
-                            sheet.cell(row=20, column=3).value = c3r14
-                            sheet.cell(row=22, column=3).value = c3r16
-                            sheet.cell(row=24, column=3).value = c3r18
-                            sheet.cell(row=26, column=3).value = c3r20
-                            sheet.cell(row=28, column=3).value = c3r22
-                            sheet.cell(row=30, column=3).value = c3r24
-                            sheet.cell(row=31, column=3).value = c3r25
+                            sheet.cell(row=9, column=1).value = c1r1
+                            sheet.cell(row=11, column=1).value = c1r3
+                            sheet.cell(row=13, column=1).value = c1r5
+                            sheet.cell(row=15, column=1).value = c1r7
+                            sheet.cell(row=17, column=1).value = c1r9
+                            sheet.cell(row=19, column=1).value = c1r11
+                            sheet.cell(row=21, column=1).value = c1r13
+                            sheet.cell(row=23, column=1).value = c1r15
+                            sheet.cell(row=25, column=1).value = c1r17
+                            sheet.cell(row=27, column=1).value = c1r19
+                            sheet.cell(row=29, column=1).value = c1r21
+                            sheet.cell(row=31, column=1).value = c1r23
+                            sheet.cell(row=9, column=2).value = c2r1
+                            sheet.cell(row=11, column=2).value = c2r3
+                            sheet.cell(row=13, column=2).value = c2r5
+                            sheet.cell(row=15, column=2).value = c2r7
+                            sheet.cell(row=17, column=2).value = c2r9
+                            sheet.cell(row=19, column=2).value = c2r11
+                            sheet.cell(row=21, column=2).value = c2r13
+                            sheet.cell(row=23, column=2).value = c2r15
+                            sheet.cell(row=25, column=2).value = c2r17
+                            sheet.cell(row=27, column=2).value = c2r19
+                            sheet.cell(row=29, column=2).value = c2r21
+                            sheet.cell(row=31, column=2).value = c2r23
+                            sheet.cell(row=10, column=3).value = c3r2
+                            sheet.cell(row=12, column=3).value = c3r4
+                            sheet.cell(row=14, column=3).value = c3r6
+                            sheet.cell(row=16, column=3).value = c3r8
+                            sheet.cell(row=18, column=3).value = c3r10
+                            sheet.cell(row=20, column=3).value = c3r12
+                            sheet.cell(row=22, column=3).value = c3r14
+                            sheet.cell(row=24, column=3).value = c3r16
+                            sheet.cell(row=26, column=3).value = c3r18
+                            sheet.cell(row=28, column=3).value = c3r20
+                            sheet.cell(row=30, column=3).value = c3r22
+                            sheet.cell(row=32, column=3).value = c3r24
+                            sheet.cell(row=33, column=3).value = c3r25
 
                         elif unit_box_cb.get() == "kg":
 
-                            sheet.cell(row=7, column=1).value = c1r1
-                            sheet.cell(row=9, column=1).value = c1r3
-                            sheet.cell(row=11, column=1).value = c1r5
-                            sheet.cell(row=13, column=1).value = c1r7
-                            sheet.cell(row=15, column=1).value = c1r9
-                            sheet.cell(row=17, column=1).value = c1r11
-                            sheet.cell(row=19, column=1).value = c1r13
-                            sheet.cell(row=21, column=1).value = c1r15
-                            sheet.cell(row=23, column=1).value = c1r17
-                            sheet.cell(row=25, column=1).value = c1r19
-                            sheet.cell(row=27, column=1).value = c1r21
-                            sheet.cell(row=29, column=1).value = c1r23
-                            sheet.cell(row=7, column=2).value = c2r1
-                            sheet.cell(row=9, column=2).value = c2r3
-                            sheet.cell(row=11, column=2).value = c2r5
-                            sheet.cell(row=13, column=2).value = c2r7
-                            sheet.cell(row=15, column=2).value = c2r9
-                            sheet.cell(row=17, column=2).value = c2r11
-                            sheet.cell(row=19, column=2).value = c2r13
-                            sheet.cell(row=21, column=2).value = c2r15
-                            sheet.cell(row=23, column=2).value = c2r17
-                            sheet.cell(row=25, column=2).value = c2r19
-                            sheet.cell(row=27, column=2).value = c2r21
-                            sheet.cell(row=29, column=2).value = c2r23
-                            sheet.cell(row=8, column=3).value = c3r2
-                            sheet.cell(row=10, column=3).value = c3r4
-                            sheet.cell(row=12, column=3).value = c3r6
-                            sheet.cell(row=14, column=3).value = c3r8
-                            sheet.cell(row=16, column=3).value = c3r10
-                            sheet.cell(row=18, column=3).value = c3r12
-                            sheet.cell(row=20, column=3).value = c3r14
-                            sheet.cell(row=22, column=3).value = c3r16
-                            sheet.cell(row=24, column=3).value = c3r18
-                            sheet.cell(row=26, column=3).value = c3r20
-                            sheet.cell(row=28, column=3).value = c3r22
-                            sheet.cell(row=30, column=3).value = c3r24
-                            sheet.cell(row=31, column=3).value = c3r25
+                            sheet.cell(row=9, column=1).value = c1r1
+                            sheet.cell(row=11, column=1).value = c1r3
+                            sheet.cell(row=13, column=1).value = c1r5
+                            sheet.cell(row=15, column=1).value = c1r7
+                            sheet.cell(row=17, column=1).value = c1r9
+                            sheet.cell(row=19, column=1).value = c1r11
+                            sheet.cell(row=21, column=1).value = c1r13
+                            sheet.cell(row=23, column=1).value = c1r15
+                            sheet.cell(row=25, column=1).value = c1r17
+                            sheet.cell(row=27, column=1).value = c1r19
+                            sheet.cell(row=29, column=1).value = c1r21
+                            sheet.cell(row=31, column=1).value = c1r23
+                            sheet.cell(row=9, column=2).value = c2r1
+                            sheet.cell(row=11, column=2).value = c2r3
+                            sheet.cell(row=13, column=2).value = c2r5
+                            sheet.cell(row=15, column=2).value = c2r7
+                            sheet.cell(row=17, column=2).value = c2r9
+                            sheet.cell(row=19, column=2).value = c2r11
+                            sheet.cell(row=21, column=2).value = c2r13
+                            sheet.cell(row=23, column=2).value = c2r15
+                            sheet.cell(row=25, column=2).value = c2r17
+                            sheet.cell(row=27, column=2).value = c2r19
+                            sheet.cell(row=29, column=2).value = c2r21
+                            sheet.cell(row=31, column=2).value = c2r23
+                            sheet.cell(row=10, column=3).value = c3r2
+                            sheet.cell(row=12, column=3).value = c3r4
+                            sheet.cell(row=14, column=3).value = c3r6
+                            sheet.cell(row=16, column=3).value = c3r8
+                            sheet.cell(row=18, column=3).value = c3r10
+                            sheet.cell(row=20, column=3).value = c3r12
+                            sheet.cell(row=22, column=3).value = c3r14
+                            sheet.cell(row=24, column=3).value = c3r16
+                            sheet.cell(row=26, column=3).value = c3r18
+                            sheet.cell(row=28, column=3).value = c3r20
+                            sheet.cell(row=30, column=3).value = c3r22
+                            sheet.cell(row=32, column=3).value = c3r24
+                            sheet.cell(row=33, column=3).value = c3r25
                             sheet.cell(row=31, column=4).value = kg
                             sheet.cell(row=31, column=5).value = "X"
                             sheet.cell(row=31, column=6).value = kg_new + "kg/m"
@@ -2551,72 +2790,72 @@ def usr_log_in():
                             sheet.cell(row=17, column=2).value = "ITEM"
 
                         elif unit_box_cb.get() == "m2":
-                            sheet.cell(row=7, column=1).value = c1r1
-                            sheet.cell(row=10, column=1).value = c1r4
-                            sheet.cell(row=13, column=1).value = c1r7
-                            sheet.cell(row=16, column=1).value = c1r10
-                            sheet.cell(row=19, column=1).value = c1r13
-                            sheet.cell(row=22, column=1).value = c1r16
-                            sheet.cell(row=25, column=1).value = c1r19
-                            sheet.cell(row=28, column=1).value = c1r22
-                            sheet.cell(row=7, column=2).value = c2r1
-                            sheet.cell(row=8, column=2).value = c2r2
-                            sheet.cell(row=10, column=2).value = c1r4
-                            sheet.cell(row=11, column=2).value = c1r5
-                            sheet.cell(row=13, column=2).value = c2r7
-                            sheet.cell(row=14, column=2).value = c2r8
-                            sheet.cell(row=16, column=2).value = c2r10
-                            sheet.cell(row=17, column=2).value = c2r11
-                            sheet.cell(row=19, column=2).value = c2r13
-                            sheet.cell(row=20, column=2).value = c2r14
-                            sheet.cell(row=22, column=2).value = c2r16
-                            sheet.cell(row=23, column=2).value = c2r17
-                            sheet.cell(row=25, column=2).value = c2r19
-                            sheet.cell(row=26, column=2).value = c2r20
-                            sheet.cell(row=28, column=2).value = c2r22
-                            sheet.cell(row=29, column=2).value = c2r23
-                            sheet.cell(row=9, column=3).value = c3r3
-                            sheet.cell(row=12, column=3).value = c3r6
-                            sheet.cell(row=15, column=3).value = c3r9
-                            sheet.cell(row=18, column=3).value = c3r12
-                            sheet.cell(row=21, column=3).value = c3r15
-                            sheet.cell(row=24, column=3).value = c3r18
-                            sheet.cell(row=27, column=3).value = c3r21
-                            sheet.cell(row=30, column=3).value = c3r24
-                            sheet.cell(row=31, column=3).value = c3r25
+                            sheet.cell(row=9, column=1).value = c1r1
+                            sheet.cell(row=12, column=1).value = c1r4
+                            sheet.cell(row=15, column=1).value = c1r7
+                            sheet.cell(row=18, column=1).value = c1r10
+                            sheet.cell(row=21, column=1).value = c1r13
+                            sheet.cell(row=24, column=1).value = c1r16
+                            sheet.cell(row=27, column=1).value = c1r19
+                            sheet.cell(row=30, column=1).value = c1r22
+                            sheet.cell(row=9, column=2).value = c2r1
+                            sheet.cell(row=10, column=2).value = c2r2
+                            sheet.cell(row=12, column=2).value = c2r4
+                            sheet.cell(row=13, column=2).value = c2r5
+                            sheet.cell(row=15, column=2).value = c2r7
+                            sheet.cell(row=16, column=2).value = c2r8
+                            sheet.cell(row=18, column=2).value = c2r10
+                            sheet.cell(row=19, column=2).value = c2r11
+                            sheet.cell(row=21, column=2).value = c2r13
+                            sheet.cell(row=22, column=2).value = c2r14
+                            sheet.cell(row=24, column=2).value = c2r16
+                            sheet.cell(row=25, column=2).value = c2r17
+                            sheet.cell(row=27, column=2).value = c2r19
+                            sheet.cell(row=28, column=2).value = c2r20
+                            sheet.cell(row=30, column=2).value = c2r22
+                            sheet.cell(row=31, column=2).value = c2r23
+                            sheet.cell(row=11, column=3).value = c3r3
+                            sheet.cell(row=14, column=3).value = c3r6
+                            sheet.cell(row=17, column=3).value = c3r9
+                            sheet.cell(row=20, column=3).value = c3r12
+                            sheet.cell(row=23, column=3).value = c3r15
+                            sheet.cell(row=26, column=3).value = c3r18
+                            sheet.cell(row=29, column=3).value = c3r21
+                            sheet.cell(row=32, column=3).value = c3r24
+                            sheet.cell(row=33, column=3).value = c3r25
 
                         elif unit_box_cb.get() == "m3":
-                            sheet.cell(row=7, column=1).value = c1r1
-                            sheet.cell(row=11, column=1).value = c1r5
-                            sheet.cell(row=15, column=1).value = c1r9
-                            sheet.cell(row=19, column=1).value = c1r13
-                            sheet.cell(row=23, column=1).value = c1r17
-                            sheet.cell(row=27, column=1).value = c1r21
-                            sheet.cell(row=7, column=2).value = c2r1
-                            sheet.cell(row=8, column=2).value = c2r2
-                            sheet.cell(row=9, column=2).value = c1r3
-                            sheet.cell(row=11, column=2).value = c1r5
-                            sheet.cell(row=12, column=2).value = c2r6
-                            sheet.cell(row=13, column=2).value = c2r7
-                            sheet.cell(row=15, column=2).value = c2r9
-                            sheet.cell(row=16, column=2).value = c2r10
-                            sheet.cell(row=17, column=2).value = c2r11
-                            sheet.cell(row=19, column=2).value = c2r13
-                            sheet.cell(row=20, column=2).value = c2r14
-                            sheet.cell(row=21, column=2).value = c2r15
-                            sheet.cell(row=23, column=2).value = c2r17
-                            sheet.cell(row=24, column=2).value = c2r18
-                            sheet.cell(row=25, column=2).value = c2r19
-                            sheet.cell(row=27, column=2).value = c2r21
-                            sheet.cell(row=28, column=2).value = c2r22
-                            sheet.cell(row=29, column=2).value = c2r13
-                            sheet.cell(row=10, column=3).value = c3r4
-                            sheet.cell(row=14, column=3).value = c3r8
-                            sheet.cell(row=18, column=3).value = c3r12
-                            sheet.cell(row=22, column=3).value = c3r16
-                            sheet.cell(row=26, column=3).value = c3r20
-                            sheet.cell(row=30, column=3).value = c3r24
-                            sheet.cell(row=31, column=3).value = c3r25
+                            sheet.cell(row=9, column=1).value = c1r1
+                            sheet.cell(row=13, column=1).value = c1r5
+                            sheet.cell(row=17, column=1).value = c1r9
+                            sheet.cell(row=21, column=1).value = c1r13
+                            sheet.cell(row=25, column=1).value = c1r17
+                            sheet.cell(row=29, column=1).value = c1r21
+                            sheet.cell(row=9, column=2).value = c2r1
+                            sheet.cell(row=10, column=2).value = c2r2
+                            sheet.cell(row=11, column=2).value = c2r3
+                            sheet.cell(row=13, column=2).value = c2r5
+                            sheet.cell(row=14, column=2).value = c2r6
+                            sheet.cell(row=15, column=2).value = c2r7
+                            sheet.cell(row=17, column=2).value = c2r9
+                            sheet.cell(row=18, column=2).value = c2r10
+                            sheet.cell(row=19, column=2).value = c2r11
+                            sheet.cell(row=21, column=2).value = c2r13
+                            sheet.cell(row=22, column=2).value = c2r14
+                            sheet.cell(row=23, column=2).value = c2r15
+                            sheet.cell(row=25, column=2).value = c2r17
+                            sheet.cell(row=26, column=2).value = c2r18
+                            sheet.cell(row=27, column=2).value = c2r19
+                            sheet.cell(row=29, column=2).value = c2r21
+                            sheet.cell(row=30, column=2).value = c2r22
+                            sheet.cell(row=31, column=2).value = c2r23
+                            sheet.cell(row=12, column=3).value = c3r4
+                            sheet.cell(row=16, column=3).value = c3r8
+                            sheet.cell(row=20, column=3).value = c3r12
+                            sheet.cell(row=24, column=3).value = c3r16
+                            sheet.cell(row=28, column=3).value = c3r20
+                            sheet.cell(row=32, column=3).value = c3r24
+                            sheet.cell(row=33, column=3).value = c3r25
 
                         else:
                             pass
@@ -2666,6 +2905,7 @@ def usr_log_in():
                 red_label = Label(taker_frame, text="RED")
                 red_label.grid(row=6, column=0)
 
+                # rate_label = Label(taker_frame, text="RATE", fg="#0000FF", bg="yellow")
                 rate_label = Label(taker_frame, text="RATE")
                 rate_label.grid(row=8, column=0)
 
@@ -2699,6 +2939,7 @@ def usr_log_in():
                 dl = Label(heading_frame, text="DESCRIPTION")
                 dl.grid(row=2, column=0)
 
+                # ul = Label(heading_frame, text="UNIT", fg="#0000FF", bg="yellow")
                 ul = Label(heading_frame, text="UNIT")
                 ul.grid(row=0, column=3)
 
@@ -2725,6 +2966,7 @@ def usr_log_in():
                 n = StringVar()
                 unit_box_cb = ttk.Combobox(heading_frame, width=25, textvariable=n, justify='center')
                 unit_box_cb.config(values=('m', 'm2', 'm3', 'kg', 'item', 'no'))
+                unit_box_cb.set('Please Select One')
                 unit_box_cb.grid(row=1, column=3)
 
                 job_box = Entry((job_frame), width=33, justify='center')
@@ -2732,13 +2974,23 @@ def usr_log_in():
                 job_box.insert(0, project_box.get())
                 job_box.configure(state=DISABLED)
 
-                bill_box = Entry((job_frame), width=32, justify='center')
+                billTextVariable = StringVar()
+                bill_box = ttk.Combobox(job_frame, width=28, textvariable=billTextVariable, justify='center')
+                bill_box.config(values=('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'))
+                # bill_box = Entry((job_frame), width=32, justify='center')
                 bill_box.grid(row=1, column=1)
 
-                element_box = Entry(job_frame, width=35, justify='center')
+                elementTextVariable = StringVar()
+                element_box = ttk.Combobox(job_frame, width=28, textvariable=elementTextVariable, justify='center')
+                element_box.config(values=('1', '2', '3', '4', '5', '6', '7', '8', '9', '10'))
+                # element_box = Entry(job_frame, width=35, justify='center')
                 element_box.grid(row=1, column=2)
 
-                slip_box = Entry(job_frame, width=27, justify='center')
+
+                slipTextVariable = StringVar()
+                slip_box = ttk.Combobox(job_frame, width=28, textvariable=slipTextVariable, justify='center')
+                slip_box.config(values=('1', '2', '3', '4', '5', '6', '7', '8', '9', '10'))
+                # slip_box = Entry(job_frame, width=27, justify='center')
                 slip_box.grid(row=1, column=3)
 
                 taker_off_box = Entry((taker_frame), width=28, justify='center')
@@ -2860,55 +3112,55 @@ def usr_log_in():
                 r24c2 = Entry(calculation_frame, width=15, justify='center')
                 r24c2.grid(row=23, column=1)
 
-                r1c3 = Entry(calculation_frame, width=15, justify='center')
+                r1c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r1c3.grid(row=0, column=2)
-                r2c3 = Entry(calculation_frame, width=15, justify='center')
+                r2c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r2c3.grid(row=1, column=2)
-                r3c3 = Entry(calculation_frame, width=15, justify='center')
+                r3c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r3c3.grid(row=2, column=2)
-                r4c3 = Entry(calculation_frame, width=15, justify='center')
+                r4c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r4c3.grid(row=3, column=2)
-                r5c3 = Entry(calculation_frame, width=15, justify='center')
+                r5c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r5c3.grid(row=4, column=2)
-                r6c3 = Entry(calculation_frame, width=15, justify='center')
+                r6c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r6c3.grid(row=5, column=2)
-                r7c3 = Entry(calculation_frame, width=15, justify='center')
+                r7c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r7c3.grid(row=6, column=2)
-                r8c3 = Entry(calculation_frame, width=15, justify='center')
+                r8c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r8c3.grid(row=7, column=2)
-                r9c3 = Entry(calculation_frame, width=15, justify='center')
+                r9c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r9c3.grid(row=8, column=2)
-                r10c3 = Entry(calculation_frame, width=15, justify='center')
+                r10c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r10c3.grid(row=9, column=2)
-                r11c3 = Entry(calculation_frame, width=15, justify='center')
+                r11c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r11c3.grid(row=10, column=2)
-                r12c3 = Entry(calculation_frame, width=15, justify='center')
+                r12c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r12c3.grid(row=11, column=2)
-                r13c3 = Entry(calculation_frame, width=15, justify='center')
+                r13c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r13c3.grid(row=12, column=2)
-                r14c3 = Entry(calculation_frame, width=15, justify='center')
+                r14c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r14c3.grid(row=13, column=2)
-                r15c3 = Entry(calculation_frame, width=15, justify='center')
+                r15c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r15c3.grid(row=14, column=2)
-                r16c3 = Entry(calculation_frame, width=15, justify='center')
+                r16c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r16c3.grid(row=15, column=2)
-                r17c3 = Entry(calculation_frame, width=15, justify='center')
+                r17c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r17c3.grid(row=16, column=2)
-                r18c3 = Entry(calculation_frame, width=15, justify='center')
+                r18c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r18c3.grid(row=17, column=2)
-                r19c3 = Entry(calculation_frame, width=15, justify='center')
+                r19c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r19c3.grid(row=18, column=2)
-                r20c3 = Entry(calculation_frame, width=15, justify='center')
+                r20c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r20c3.grid(row=19, column=2)
-                r21c3 = Entry(calculation_frame, width=15, justify='center')
+                r21c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r21c3.grid(row=20, column=2)
-                r22c3 = Entry(calculation_frame, width=15, justify='center')
+                r22c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r22c3.grid(row=21, column=2)
-                r23c3 = Entry(calculation_frame, width=15, justify='center')
+                r23c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r23c3.grid(row=22, column=2)
-                r24c3 = Entry(calculation_frame, width=15, justify='center')
+                r24c3 = Entry(calculation_frame, width=15, justify='center', bg='yellow')
                 r24c3.grid(row=23, column=2)
-                r25c3 = Entry(calculation_frame, width=15, justify='center')
+                r25c3 = Entry(calculation_frame, width=15, justify='center', bg='#96be25')
                 r25c3.grid(row=24, column=2)
                 quantity_kg = Entry((covert_frame), width=18, justify='center')
                 quantity_kg.grid(row=0, column=2)
@@ -2969,37 +3221,37 @@ def usr_log_in():
                 r22c2.insert(0, 0)
                 r23c2.insert(0, 0)
 
-                r1c3.insert(0, 0)
-                r2c3.insert(0, 0)
-                r3c3.insert(0, 0)
-                r4c3.insert(0, 0)
-                r5c3.insert(0, 0)
-                r6c3.insert(0, 0)
-                r7c3.insert(0, 0)
-                r8c3.insert(0, 0)
-                r9c3.insert(0, 0)
-                r10c3.insert(0, 0)
-                r11c3.insert(0, 0)
-                r12c3.insert(0, 0)
-                r13c3.insert(0, 0)
-                r14c3.insert(0, 0)
-                r15c3.insert(0, 0)
-                r16c3.insert(0, 0)
-                r17c3.insert(0, 0)
-                r18c3.insert(0, 0)
-                r19c3.insert(0, 0)
-                r20c3.insert(0, 0)
-                r21c3.insert(0, 0)
-                r22c3.insert(0, 0)
-                r23c3.insert(0, 0)
-                r24c3.insert(0, 0)
-                r25c3.insert(0, 0)
+                r1c3.insert(0, '')
+                r2c3.insert(0, '')
+                r3c3.insert(0, '')
+                r4c3.insert(0, '')
+                r5c3.insert(0, '')
+                r6c3.insert(0, '')
+                r7c3.insert(0, '')
+                r8c3.insert(0, '')
+                r9c3.insert(0, '')
+                r10c3.insert(0, '')
+                r11c3.insert(0, '')
+                r12c3.insert(0, '')
+                r13c3.insert(0, '')
+                r14c3.insert(0, '')
+                r15c3.insert(0, '')
+                r16c3.insert(0, '')
+                r17c3.insert(0, '')
+                r18c3.insert(0, '')
+                r19c3.insert(0, '')
+                r20c3.insert(0, '')
+                r21c3.insert(0, '')
+                r22c3.insert(0, '')
+                r23c3.insert(0, '')
+                r24c3.insert(0, '')
+                r25c3.insert(0, '')
                 rate_box.insert(0, 0)
                 quantity_paper_box.insert(0, 0)
                 total_cost_box.insert(0, 0)
 
                 # button confirm unit
-                confirm = Button(tko, text="CONFIRM UNIT", command=unit_confirm, width=21)
+                confirm = Button(tko, text="CONFIRM UNIT", command=unit_confirm, width=21, bg="yellow")
                 confirm.place(x=625, y=420)
 
                 # button calculation
@@ -3033,15 +3285,15 @@ def usr_log_in():
 
                 def addLine(event):
                     global current_x, current_y
-                    canvas.create_line((current_x, current_y, event.x, event.y), width=5, fill=color, capstyle=ROUND,
-                                       smooth=True)
-                    current_x, current_y = event.x, event.y
+                    if not (event.x < 35 and event.y < 600):
+                        canvas.create_line((current_x, current_y, event.x, event.y), width=5, fill=color, capstyle=ROUND,
+                                        smooth=True)
+                        current_x, current_y = event.x, event.y
 
-
+                    
                 canvas = Canvas(tko, background='white')
                 canvas.place(x=304, y=131, height=463, width=306)
                 current_x, current_y = 0, 0
-
 
                 canvas.bind('<Button-1>', locate_xy)
                 canvas.bind('<B1-Motion>', addLine)
@@ -3052,43 +3304,70 @@ def usr_log_in():
                     id = canvas.create_rectangle((10, 10, 30, 30), fill="black")
                     canvas.tag_bind(id, '<Button-1>', lambda x: show_color("black"))
 
-                    id = canvas.create_rectangle((10, 40, 30, 60), fill="white")
-                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color("white"))
+                    # id = canvas.create_rectangle((10, 40, 30, 60), fill="white")
+                    # canvas.tag_bind(id, '<Button-1>', lambda x: show_color("white"))
 
-                    id = canvas.create_rectangle((10, 70, 30, 90), fill="brown4")
+                    id = canvas.create_rectangle((10, 40, 30, 60), fill="brown4")
                     canvas.tag_bind(id, '<Button-1>', lambda x: show_color("brown4"))
 
-                    id = canvas.create_rectangle((10, 100, 30, 120), fill="red")
+                    id = canvas.create_rectangle((10, 70, 30, 90), fill="red")
                     canvas.tag_bind(id, '<Button-1>', lambda x: show_color("red"))
 
-                    id = canvas.create_rectangle((10, 130, 30, 150), fill="yellow")
+                    id = canvas.create_rectangle((10, 100, 30, 120), fill="yellow")
                     canvas.tag_bind(id, '<Button-1>', lambda x: show_color("yellow"))
 
-                    id = canvas.create_rectangle((10, 160, 30, 180), fill="blue")
+                    id = canvas.create_rectangle((10, 130, 30, 150), fill="blue")
                     canvas.tag_bind(id, '<Button-1>', lambda x: show_color('blue'))
 
-                    id = canvas.create_rectangle((10, 190, 30, 210), fill="green")
+                    id = canvas.create_rectangle((10, 160, 30, 180), fill="green")
                     canvas.tag_bind(id, '<Button-1>', lambda x: show_color('green'))
 
-                    id = canvas.create_rectangle((10, 220, 30, 240), fill="purple")
+                    id = canvas.create_rectangle((10, 190, 30, 210), fill="purple")
                     canvas.tag_bind(id, '<Button-1>', lambda x: show_color('purple'))
 
-                    id = canvas.create_rectangle((10, 250, 30, 270), fill="orange")
+                    id = canvas.create_rectangle((10, 220, 30, 240), fill="orange")
                     canvas.tag_bind(id, '<Button-1>', lambda x: show_color('orange'))
+                    
+                    # id = canvas.create_rectangle((10, 400, 30, 420), fill="white")
+                    # id = canvas.create_text(20,400,fill="black",font="Times 16",text="Ʉ")
+                    id = canvas.create_text(20,400,fill="black",font="Times 16",text="⌫")
+                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color("white"))
+                    
+                    id = canvas.create_text(20,450,fill="black",font="Times 16",text="↩")
+                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color("white"))
+                    
+                    # issue loading image here
+                    # eraserImage = Image.open("eraser.png")
+                    # eraserImg = ImageTk.PhotoImage(eraserImage, master=self)
+                    # print('eraserImage -> ', eraserImage)
+                    # print('eraserImg -> ', eraserImg)
+                    # id = canvas.create_image(30, 400, image=eraserImg)
+                    # print('id -> ', id)
+                    # canvas.tag_bind(id, '<Button-1>', lambda x: show_color("white"))
 
                 display_pallete()
 
             # remove all
             def remove_all():
-                for record in my_tree.get_children():
-                    my_tree.delete(record)
-                    project_box.delete(0, END)
-                    taker_off_name_box.delete(0, END)
+                if len(my_tree.get_children()) == 0:
+                    messagebox.showerror(message='THERE ARE NO ITEMS TO BE DELETED')
+                else:
+                    for record in my_tree.get_children():
+                        my_tree.delete(record)
+                        project_box.delete(0, END)
+                        taker_off_name_box.delete(0, END)
+                        count = count - 1
 
             # remove one selected
             def remove_one():
-                x = my_tree.selection()[0]
-                my_tree.delete(x)
+                if len(my_tree.get_children()) == 0:
+                    messagebox.showerror(message='THERE ARE NO ITEMS TO BE DELETED')
+                elif len(my_tree.selection()) == 0:
+                    messagebox.showerror(message='THERE ARE NO ITEMS SELECTED')
+                else:
+                    x = my_tree.selection()[0]
+                    my_tree.delete(x)
+                    count = count - 1
 
             # select record
             def select_record(e):
@@ -3111,24 +3390,28 @@ def usr_log_in():
             # save record
             def save_record():
 
-                try:
-                    input_quantity = float(quantity_box.get())
-                except ValueError:
-                    messagebox.showerror(message="NUMERIC INPUT ONLY")
+                if len(my_tree.selection()) == 0:
+                    messagebox.showerror(message='THERE ARE NO ITEMS SELECTED')
+
+                else:
+                    try:
+                        input_quantity = float(quantity_box.get())
+                    except ValueError:
+                        messagebox.showerror(message="NUMERIC INPUT ONLY")
+                        quantity_box.delete(0, END)
+
+                    # Grab record number
+                    selected = my_tree.focus()
+
+                    # save new data
+                    my_tree.item(selected, text="",
+                        values=(item_box.get(), clause_box.get(), unit_box.get(), quantity_box.get()))
+
+                    # clear entry boxes
+                    item_box.delete(0, END)
+                    clause_box.delete(0, END)
+                    unit_box.delete(0, END)
                     quantity_box.delete(0, END)
-
-                # Grab record number
-                selected = my_tree.focus()
-
-                # save new data
-                my_tree.item(selected, text="",
-                    values=(item_box.get(), clause_box.get(), unit_box.get(), quantity_box.get()))
-
-                # clear entry boxes
-                item_box.delete(0, END)
-                clause_box.delete(0, END)
-                unit_box.delete(0, END)
-                quantity_box.delete(0, END)
 
             def log_out():
                 MsgBox = messagebox.askquestion(message='DO YOU WANT TO LOG OUT ?')
