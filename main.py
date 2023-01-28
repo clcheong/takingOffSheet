@@ -20,7 +20,7 @@ gc.disable()
 
 # main window
 window = Tk()
-window.title('WELCOME TO TakeO PROGRAM')
+window.title('Welcome to FAST Takeoff')
 window.geometry('400x300+480+200')
 style = ttk.Style()
 style.theme_use('default')
@@ -32,16 +32,16 @@ image = canvas.create_image(0, 0, anchor='nw', image=imagefile)
 canvas.pack(side='top')
 
 # label user name and password
-Label(window, text='USER NAME:').place(x=99, y=150)
-Label(window, text='PASSWORD:').place(x=99, y=190)
+Label(window, text='Username:', bg="#395FB6", fg="white").place(x=99, y=150)
+Label(window, text='Password:', bg="#395FB6", fg="white").place(x=99, y=190)
 # input user name
 var_usr_name = StringVar()
 entry_usr_name = Entry(window, textvariable=var_usr_name)
-entry_usr_name.place(x=170, y=150)
+entry_usr_name.place(x=160, y=150)
 # input password
 var_usr_pwd = StringVar()
 entry_usr_pwd = Entry(window, textvariable=var_usr_pwd, show='*')
-entry_usr_pwd.place(x=170, y=190)
+entry_usr_pwd.place(x=160, y=190)
 
 # LOG IN DETAIL
 def usr_log_in():
@@ -60,7 +60,7 @@ def usr_log_in():
     if usr_name in usrs_info:
         if usr_pwd == usrs_info[usr_name]:
             messagebox.showinfo(title='WELCOME',
-                                   message='WELCOME：' + usr_name)
+                                   message='Welcome:' + usr_name)
             window.destroy()
 
             def togglecheck(event):
@@ -228,10 +228,168 @@ def usr_log_in():
                     quantity_box.insert(0, 0)
 
 
+            #query list
+            def query():
+                root.withdraw()
+                query = Tk()
+                query.title('QUERY LIST')
+                query.geometry("650x500+300+50")
+                query_frame= Frame(query)
+
+                # add query
+                def add_query():
+                    if query_item_box.get() == "":
+                        messagebox.showerror(message='PLEASE ENTER THE ITEM')
+                    elif query_assumption_box.get() == "":
+                        messagebox.showerror(message='PLEASE ENTER THE ASSUMPTION')
+                    else:
+                        messagebox.showinfo("Query List", "Query updated.")
+
+                    global count
+                    my_tree_query.insert(parent='', index='end', iid=count,
+                                   values=(query_item_box.get(), query_assumption_box.get()),
+                                   tags="unchecked")
+                    count += 1
+
+                # delete query
+                def remove_query():
+                    x = my_tree_query.selection()[0]
+                    my_tree_query.delete(x)
+
+                def back_query():
+                     query.withdraw()
+                     root.deiconify()
+
+                def togglecheck_query(event):
+                    rowid = my_tree_query.identify_row(event.y)
+                    tag = my_tree_query.item(rowid, "tags")[0]
+                    tags = list(my_tree_query.item(rowid, "tags"))
+                    tags.remove(tag)
+                    my_tree_query.item(rowid, tags=tags)
+                    if tag == "checked":
+                        my_tree_query.item(rowid, tags="unchecked")
+                    else:
+                        my_tree_query.item(rowid, tags="checked")
+
+                # button add query
+                add_query_button = Button(query, text="ADD QUERY", command=add_query, width=15)
+                add_query_button.place(x=100, y=450)
+
+                # delete query
+                delete_query = Button(query, text="DELETE QUERY", command=remove_query, width=15)
+                delete_query.place(x=300, y=450)
+
+                #back to taking off list
+                back_query= Button(query,text="BACK", command=back_query, width=15)
+                back_query.place(x=500, y=450)
+
+                 # bind select record
+                delete_query.bind("<ButtonRelease-1>", select_record)
+                delete_query.bind("<Double-1>", togglecheck_query)
+
+                # add some style
+                style_query = ttk.Style()
+
+                # pick a them
+                style_query.theme_use('default')
+
+                # treeview frame
+                tree_query_frame = Frame(query)
+                tree_query_frame.place(x=10, y=83)
+
+                # scroll bar
+                tree_query_scroll = Scrollbar(tree_query_frame)
+                tree_query_scroll.pack(side=RIGHT, fill=Y)
+
+                my_tree_query = ttk.Treeview(tree_query_frame, yscrollcommand=tree_query_scroll.set, selectmode="extended")
+                my_tree_query.pack()
+
+                # configure
+                tree_query_scroll.configure(command=my_tree_query.yview_scroll)
+
+                # define column
+                my_tree_query['columns'] = ("ITEM", "ASSUMPTION")
+
+                # Formate the column
+                my_tree_query.column("#0", anchor=CENTER, width=50)
+                my_tree_query.column("ITEM", anchor=CENTER, width=275)
+                my_tree_query.column("ASSUMPTION", anchor=CENTER, width=275)
+
+                query_im_checked = ImageTk.PhotoImage(Image.open("checked.png"))
+                query_im_unchecked = ImageTk.PhotoImage(Image.open("unchecked.png"))
+
+                style_query = ttk.Style(my_tree_query)
+                style_query.configure('Treeview', rowheight=28)
+
+                # Create Headings
+                my_tree_query.heading("#0", text="", anchor=CENTER)
+                my_tree_query.heading("ITEM", text="ITEM", anchor=CENTER)
+                my_tree_query.heading("ASSUMPTION", text="ASSUMPTION", anchor=CENTER)
+
+                my_tree_query.tag_configure('checked', image=query_im_checked)
+                my_tree_query.tag_configure('unchecked', image=query_im_unchecked)
+
+                # add data
+                data = []
+
+                global count
+
+                count = 0
+                for record in data:
+                    my_tree_query.insert(parent='', index='end', lid=count, text="", values=(record))
+                    count += 1
+
+                # pack to screen
+                query_time_frame = Frame(query)
+                query_time_frame.place(x=525, y=20)
+
+                query_current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                query_time_label = Label(query_time_frame, text=current_time)
+                query_time_label.pack()
+
+                query_name_frame = Frame(query)
+                query_name_frame.pack()
+
+                query_project_frame = Frame(query)
+                query_project_frame.place(x=10, y=55)
+
+                query_label = Label(query_name_frame, text="QUERY LIST", font=(30))
+                query_label.pack(pady=10)
+
+                query_add_frame = Frame(query)
+                query_add_frame.place(x=10, y=380)
+
+                query_item_label = Label(query_add_frame, text="ITEM")
+                query_item_label.grid(row=0, column=1)
+
+                query_assumption_label = Label(query_add_frame, text="ASSUMPTION")
+                query_assumption_label.grid(row=0, column=2)
+
+                query_project_name_label = Label(query_project_frame, text="PROJECT NAME")
+                query_project_name_label.grid(row=0, column=0)
+
+                query_taker_off_name_label = Label(query_project_frame, text="TAKER OFF")
+                query_taker_off_name_label.grid(row=0, column=2)
+
+                # ENTRY BOX
+
+                query_project_box = Entry(query_project_frame, width=45)
+                query_project_box.grid(row=0, column=1)
+
+                query_taker_off_name_box = Entry(query_project_frame, width=28)
+                query_taker_off_name_box.grid(row=0, column=3)
+
+                query_item_box = Entry(query_add_frame, width=49)
+                query_item_box.grid(row=1, column=1)
+
+                query_assumption_box = Entry(query_add_frame, width=49, justify='center')
+                query_assumption_box.grid(row=1, column=2)
+
+
             # taking off paper
             def taking_off_paper():
                 root.withdraw()
-                messagebox.showinfo(message='PLEASE,CONFIRM THE UNIT MEASUREMENT BEFORE DOING THE CALCULATION')
+                messagebox.showinfo("Attention!","Please confirm the unit before calculation.")
 
 
                 def new_canvas(event):
@@ -3414,7 +3572,7 @@ def usr_log_in():
                     quantity_box.delete(0, END)
 
             def log_out():
-                MsgBox = messagebox.askquestion(message='DO YOU WANT TO LOG OUT ?')
+                MsgBox = messagebox.askquestion(message='Are you sure to log out ?')
                 if MsgBox == 'yes':
                     root.destroy()
 
@@ -3430,7 +3588,7 @@ def usr_log_in():
 
             # button taking off paper
             add_taking_off_paper = Button(root, text="TAKING OFF PAPER", command=taking_off_paper)
-            add_taking_off_paper.place(x=620, y=50)
+            add_taking_off_paper.place(x=380, y=475)
 
             # remove one
             remove_one = Button(button_frame, text="DELETE RECORD", command=remove_one, width=15)
@@ -3444,20 +3602,24 @@ def usr_log_in():
             save_record = Button(button_frame, text="UPDATE RECORD", command=save_record, width=15)
             save_record.grid(row=0, column=1, padx=10)
 
+            # button query list
+            query_list= Button(button_frame, text="QUERY LIST", command= query,width=15)
+            query_list.grid(row=2, column=1, pady=10)
+
             # bind select record
             my_tree.bind("<ButtonRelease-1>", select_record)
             my_tree.bind("<Double-1>", togglecheck)
             root.mainloop()
 
         else:
-            messagebox.showerror(message='PASSWORD INCORRECT')
+            messagebox.showerror(message='Invalid password')
 
     # PLEASE ENTER THE PASSWORD OR USERNAME
     elif usr_name == '' or usr_pwd == '':
-        messagebox.showerror(message='PLEASE ENTER THE USERNAME AND PASSWORD')
+        messagebox.showerror(message='Please enter the username and password.')
     # DATA NOT IN FILE
     else:
-        is_signup = messagebox.askyesno('WELCOME', 'DO YOU WANT TO REGISTER FOR TakeO PROGRAM')
+        is_signup = messagebox.askyesno('Welcome!', "Account not exist.Do you want to register for FAST Takeoff?")
         if is_signup:
             usr_sign_up()
 
@@ -3474,17 +3636,17 @@ def usr_sign_up():
             exist_usr_info = {}
 
         if nn in exist_usr_info:
-            messagebox.showerror('ERROR', 'USERNAME ALREADY EXISTS')
+            messagebox.showerror("Error!", 'Username already exists. Please try another one.')
         elif np == '' or nn == '':
-            messagebox.showerror('ERROR', 'PLEASE FILL IN THE USERNAME AND PASSWORD')
+            messagebox.showerror("Error!", 'Please fill in the username and password.')
         elif np != npf:
-            messagebox.showerror('ERROR', 'WRONG PASSWORD')
+            messagebox.showerror("Error!", 'Please re-enter the password.')
         # SAVE THE USER NEW DATA
         else:
             exist_usr_info[nn] = np
             with open('usr_info.pickle', 'wb') as usr_file:
                 pickle.dump(exist_usr_info, usr_file)
-            messagebox.showinfo('WELCOME', 'REGISTRATION SUCCESS')
+            messagebox.showinfo("Welcome!", 'Registration success! Please log in.')
             # EXIT THE SIGN UP WINDOW
             window_sign_up.destroy()
 
@@ -3494,15 +3656,15 @@ def usr_sign_up():
     window_sign_up.title('SIGN UP')
     # LABEL AND INPUT USERNAME
     new_name = StringVar()
-    Label(window_sign_up, text='USERNAME：').place(x=10, y=10)
+    Label(window_sign_up, text='Username:').place(x=10, y=10)
     Entry(window_sign_up, textvariable=new_name).place(x=160, y=10)
     # LABEL AND INPUT PASSWORD
     new_pwd = StringVar()
-    Label(window_sign_up, text='PASSWORD：').place(x=10, y=50)
+    Label(window_sign_up, text='Password:').place(x=10, y=50)
     Entry(window_sign_up, textvariable=new_pwd, show='*').place(x=160, y=50)
     # LABEL AND INPUT REENTER THE PASSWORD
     new_pwd_confirm = StringVar()
-    Label(window_sign_up, text='REENTER THE PASSWORD：').place(x=10, y=90)
+    Label(window_sign_up, text='Re-enter the password:').place(x=10, y=90)
     Entry(window_sign_up, textvariable=new_pwd_confirm, show='*').place(x=160, y=90)
     # CONFIRM SIGN UP BUTTON
     bt_confirm_sign_up = Button(window_sign_up, text='CONFIRM SIGN UP',
@@ -3514,11 +3676,11 @@ def usr_sign_quit():
     window.destroy()
 
 # LOG IN, REGISTER AND EXIT BUTTON
-bt_login = Button(window, text='LOG IN', command=usr_log_in)
+bt_login = Button(window, text='LOG IN',bg="#DAF7A6", command=usr_log_in)
 bt_login.place(x=100, y=230)
-bt_logup = Button(window, text='REGISTER', command=usr_sign_up)
-bt_logup.place(x=180, y=230)
-bt_logquit = Button(window, text='EXIT', command=usr_sign_quit)
+bt_logup = Button(window, text='REGISTER',bg="#DAF7A6", command=usr_sign_up)
+bt_logup.place(x=175, y=230)
+bt_logquit = Button(window, text='EXIT',bg= "#EE123A", fg= "white", command=usr_sign_quit)
 bt_logquit.place(x=260, y=230)
 
 window.mainloop()
