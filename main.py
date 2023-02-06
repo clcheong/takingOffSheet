@@ -2,6 +2,7 @@ from doctest import master
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+from tkinter import colorchooser	
 from openpyxl.styles.borders import Border, Side
 import datetime
 from PIL import ImageTk
@@ -27,7 +28,7 @@ style.theme_use('default')
 
 # main window background
 canvas = Canvas(window, height=300, width=500)
-imagefile=PhotoImage(file='image/background.png')
+imagefile = PhotoImage(file='image/background.png')
 image = canvas.create_image(0, 0, anchor='nw', image=imagefile)
 canvas.pack(side='top')
 
@@ -42,6 +43,7 @@ entry_usr_name.place(x=160, y=150)
 var_usr_pwd = StringVar()
 entry_usr_pwd = Entry(window, textvariable=var_usr_pwd, show='*')
 entry_usr_pwd.place(x=160, y=190)
+
 
 # LOG IN DETAIL
 def usr_log_in():
@@ -60,7 +62,7 @@ def usr_log_in():
     if usr_name in usrs_info:
         if usr_pwd == usrs_info[usr_name]:
             messagebox.showinfo(title='WELCOME',
-                                   message='Welcome:' + usr_name)
+                                message='Welcome:' + usr_name)
             window.destroy()
 
             def togglecheck(event):
@@ -186,7 +188,9 @@ def usr_log_in():
             # clause_box = Entry(add_frame, width=30, justify='center')
             clause = StringVar()
             clause_box = ttk.Combobox(add_frame, width=18, textvariable=clause, justify='center')
-            clause_box.config(values=('D.12', 'D.25', 'F.3.5', 'F.3.7', 'F.3.8', 'F.3.15', 'F.3.16', 'F.8.1', 'F.8.4', 'F.10.1', 'G.3.1', 'G.3.3.a', 'L.4', 'L.17', 'S.2', 'S.11.1', 'S.1', 'U.3.1'))
+            clause_box.config(values=(
+            'D.12', 'D.25', 'F.3.5', 'F.3.7', 'F.3.8', 'F.3.15', 'F.3.16', 'F.8.1', 'F.8.4', 'F.10.1', 'G.3.1',
+            'G.3.3.a', 'L.4', 'L.17', 'S.2', 'S.11.1', 'S.1', 'U.3.1'))
             clause_box.grid(row=1, column=1)
 
             unit = StringVar()
@@ -227,14 +231,13 @@ def usr_log_in():
                     quantity_box.delete(0, END)
                     quantity_box.insert(0, 0)
 
-
-            #query list
+            # query list
             def query():
                 root.withdraw()
                 query = Tk()
                 query.title('QUERY LIST')
                 query.geometry("650x500+300+50")
-                query_frame= Frame(query)
+                query_frame = Frame(query)
 
                 # add query
                 def add_query():
@@ -247,8 +250,8 @@ def usr_log_in():
 
                     global count
                     my_tree_query.insert(parent='', index='end', iid=count,
-                                   values=(query_item_box.get(), query_assumption_box.get()),
-                                   tags="unchecked")
+                                         values=(query_item_box.get(), query_assumption_box.get()),
+                                         tags="unchecked")
                     count += 1
 
                 # delete query
@@ -257,8 +260,8 @@ def usr_log_in():
                     my_tree_query.delete(x)
 
                 def back_query():
-                     query.withdraw()
-                     root.deiconify()
+                    query.withdraw()
+                    root.deiconify()
 
                 def togglecheck_query(event):
                     rowid = my_tree_query.identify_row(event.y)
@@ -279,11 +282,11 @@ def usr_log_in():
                 delete_query = Button(query, text="DELETE QUERY", command=remove_query, width=15)
                 delete_query.place(x=300, y=450)
 
-                #back to taking off list
-                back_query= Button(query,text="BACK", command=back_query, width=15)
+                # back to taking off list
+                back_query = Button(query, text="BACK", command=back_query, width=15)
                 back_query.place(x=500, y=450)
 
-                 # bind select record
+                # bind select record
                 delete_query.bind("<ButtonRelease-1>", select_record)
                 delete_query.bind("<Double-1>", togglecheck_query)
 
@@ -301,7 +304,8 @@ def usr_log_in():
                 tree_query_scroll = Scrollbar(tree_query_frame)
                 tree_query_scroll.pack(side=RIGHT, fill=Y)
 
-                my_tree_query = ttk.Treeview(tree_query_frame, yscrollcommand=tree_query_scroll.set, selectmode="extended")
+                my_tree_query = ttk.Treeview(tree_query_frame, yscrollcommand=tree_query_scroll.set,
+                                             selectmode="extended")
                 my_tree_query.pack()
 
                 # configure
@@ -385,17 +389,14 @@ def usr_log_in():
                 query_assumption_box = Entry(query_add_frame, width=49, justify='center')
                 query_assumption_box.grid(row=1, column=2)
 
-
             # taking off paper
             def taking_off_paper():
                 root.withdraw()
-                messagebox.showinfo("Attention!","Please confirm the unit before calculation.")
-
+                messagebox.showinfo("Attention!", "Please confirm the unit before calculation.")
 
                 def new_canvas(event):
                     canvas.delete('all')
                     display_pallete()
-
 
                 def calculate():
                     r1c3.delete(0, END)
@@ -1413,7 +1414,7 @@ def usr_log_in():
                     r23c3.delete(0, END)
                     r24c3.delete(0, END)
                     r25c3.delete(0, END)
-                    rate_box.delete(0,END)
+                    rate_box.delete(0, END)
 
                     quantity_kg.insert(0, 0)
                     quantity_kg_o.insert(0, 0)
@@ -2391,7 +2392,7 @@ def usr_log_in():
 
                 def save():
                     filepath = "my_image.png"
-                    ss = ImageGrab.grab(bbox=(785, 250, 1100, 817))
+                    ss = ImageGrab.grab(bbox=(795, 289, 1100, 817))
                     ss.save(filepath, "PNG")
 
                     MsgBox = messagebox.askquestion(message='DO YOU WANT TO SAVE THE DATA TO EXCEL ?')
@@ -2487,7 +2488,6 @@ def usr_log_in():
                         c3r24 = (r24c3.get())
                         c3r25 = (r25c3.get())
 
-
                         if os.path.exists("TAKING_OFF.xlsx"):
                             file = load_workbook("TAKING_OFF.xlsx")
                             last_sheet = file.worksheets[-1]
@@ -2508,7 +2508,7 @@ def usr_log_in():
                         sheet.merge_cells('C2:D2')  # bill no data
                         sheet.merge_cells('E2:F2')  # element no data
                         sheet.merge_cells('G2:H2')  # slip no data
-                        sheet.merge_cells('A3:F3')  # 'HEADING' 
+                        sheet.merge_cells('A3:F3')  # 'HEADING'
                         sheet.merge_cells('A4:F5')  # heading data
                         sheet.merge_cells('A6:F6')  # 'DESCRIPTION'
                         sheet.merge_cells('A7:F8')  # description data
@@ -2521,20 +2521,20 @@ def usr_log_in():
                         sheet.merge_cells('G8:H8')  # 'TAKER OFF'
                         sheet.merge_cells('G9:H9')  # Taker off data
                         sheet.merge_cells('G10:H10')  # 'SQD'
-                        sheet.merge_cells('G11:H11')    # sqd data
-                        sheet.merge_cells('G12:H12')    # 'CH.SQD'
-                        sheet.merge_cells('G13:H13')    # ch sqd data
-                        sheet.merge_cells('G15:H15')    # red data
-                        sheet.merge_cells('G14:H14')    # 'RED'
-                        sheet.merge_cells('G16:H16')    # 'RATE'
-                        sheet.merge_cells('G17:H17')    # rate data
-                        sheet.merge_cells('G18:H18')    # 'TOTAL COST'
-                        sheet.merge_cells('G19:H19')    # total cost data
-                        sheet.merge_cells('G20:H20')    # 'DATE AND TIME'
-                        sheet.merge_cells('G21:H21')    # date & time
-                        sheet.merge_cells('G22:H22')    # empty
-                        sheet.merge_cells('G23:H23')    # empty
-                        sheet.merge_cells('D9:F9')    # empty
+                        sheet.merge_cells('G11:H11')  # sqd data
+                        sheet.merge_cells('G12:H12')  # 'CH.SQD'
+                        sheet.merge_cells('G13:H13')  # ch sqd data
+                        sheet.merge_cells('G15:H15')  # red data
+                        sheet.merge_cells('G14:H14')  # 'RED'
+                        sheet.merge_cells('G16:H16')  # 'RATE'
+                        sheet.merge_cells('G17:H17')  # rate data
+                        sheet.merge_cells('G18:H18')  # 'TOTAL COST'
+                        sheet.merge_cells('G19:H19')  # total cost data
+                        sheet.merge_cells('G20:H20')  # 'DATE AND TIME'
+                        sheet.merge_cells('G21:H21')  # date & time
+                        sheet.merge_cells('G22:H22')  # empty
+                        sheet.merge_cells('G23:H23')  # empty
+                        sheet.merge_cells('D9:F9')  # empty
 
                         sheet["A1"].alignment = Alignment(horizontal="center")
                         sheet['C1'].alignment = Alignment(horizontal="center")
@@ -2630,7 +2630,7 @@ def usr_log_in():
                         sheet.cell(row=2, column=5).value = element
                         sheet.cell(row=9, column=7).value = taker
                         sheet.cell(row=21, column=7).value = current_time
-                        
+
                         # apply borders
                         # row 1
                         sheet.cell(row=1, column=1).border = Border(left=Side(style='thick'), top=Side(style='thick'))
@@ -2641,16 +2641,17 @@ def usr_log_in():
                         sheet.cell(row=1, column=6).border = Border(right=Side(style='thick'), top=Side(style='thick'))
                         sheet.cell(row=1, column=7).border = Border(left=Side(style='thick'), top=Side(style='thick'))
                         sheet.cell(row=1, column=8).border = Border(right=Side(style='thick'), top=Side(style='thick'))
-                        
+
                         # row 2
                         sheet.cell(row=2, column=1).border = Border(left=Side(style='thick'))
                         sheet.cell(row=2, column=2).border = Border(right=Side(style='thick'))
                         sheet.cell(row=2, column=4).border = Border(right=Side(style="thick"))
                         sheet.cell(row=2, column=6).border = Border(right=Side(style='thick'))
                         sheet.cell(row=2, column=8).border = Border(right=Side(style='thick'))
-                        
+
                         # row 3
-                        sheet.cell(row=3, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"), top=Side(style="thick"))
+                        sheet.cell(row=3, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"),
+                                                                    top=Side(style="thick"))
                         sheet.cell(row=3, column=2).border = Border(top=Side(style="thick"))
                         sheet.cell(row=3, column=3).border = Border(top=Side(style="thick"))
                         sheet.cell(row=3, column=4).border = Border(top=Side(style="thick"))
@@ -2658,13 +2659,13 @@ def usr_log_in():
                         sheet.cell(row=3, column=6).border = Border(right=Side(style="thick"), top=Side(style="thick"))
                         sheet.cell(row=3, column=7).border = Border(left=Side(style="thick"), top=Side(style="thick"))
                         sheet.cell(row=3, column=8).border = Border(right=Side(style="thick"), top=Side(style="thick"))
-                        
+
                         # row 4
                         sheet.cell(row=4, column=1).border = Border(left=Side(style="thick"))
                         sheet.cell(row=4, column=6).border = Border(right=Side(style="thick"))
                         sheet.cell(row=4, column=7).border = Border(left=Side(style="thick"))
                         sheet.cell(row=4, column=8).border = Border(right=Side(style="thick"))
-                        
+
                         # row 5
                         sheet.cell(row=5, column=1).border = Border(left=Side(style="thick"))
                         sheet.cell(row=5, column=6).border = Border(right=Side(style="thick"))
@@ -2684,15 +2685,18 @@ def usr_log_in():
                         sheet.cell(row=7, column=1).border = Border(left=Side(style="thick"))
                         sheet.cell(row=7, column=6).border = Border(right=Side(style="thick"))
                         sheet.cell(row=7, column=7).border = Border(bottom=Side(style="thick"))
-                        sheet.cell(row=7, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))
-                        
+                        sheet.cell(row=7, column=8).border = Border(right=Side(style="thick"),
+                                                                    bottom=Side(style="thick"))
+
                         # row 8
-                        sheet.cell(row=8, column=1).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
+                        sheet.cell(row=8, column=1).border = Border(left=Side(style="thick"),
+                                                                    bottom=Side(style="thick"))
                         sheet.cell(row=8, column=2).border = Border(bottom=Side(style="thick"))
                         sheet.cell(row=8, column=3).border = Border(bottom=Side(style="thick"))
                         sheet.cell(row=8, column=4).border = Border(bottom=Side(style="thick"))
                         sheet.cell(row=8, column=5).border = Border(bottom=Side(style="thick"))
-                        sheet.cell(row=8, column=6).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))
+                        sheet.cell(row=8, column=6).border = Border(right=Side(style="thick"),
+                                                                    bottom=Side(style="thick"))
                         sheet.cell(row=8, column=7).border = Border(left=Side(style="thick"), top=Side(style="thick"))
                         sheet.cell(row=8, column=8).border = Border(right=Side(style="thick"), top=Side(style="thick"))
 
@@ -2700,163 +2704,247 @@ def usr_log_in():
                         sheet.cell(row=9, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
                         sheet.cell(row=9, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
                         sheet.cell(row=9, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=9, column=7).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
-                        sheet.cell(row=9, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))
-                        
+                        sheet.cell(row=9, column=7).border = Border(left=Side(style="thick"),
+                                                                    bottom=Side(style="thick"))
+                        sheet.cell(row=9, column=8).border = Border(right=Side(style="thick"),
+                                                                    bottom=Side(style="thick"))
+
                         # row 10
-                        sheet.cell(row=10, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=10, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=10, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=10, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=10, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=10, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
                         sheet.cell(row=10, column=7).border = Border(left=Side(style="thick"))
                         sheet.cell(row=10, column=8).border = Border(right=Side(style="thick"))
-                        
+
                         # row 11
-                        sheet.cell(row=11, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=11, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=11, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=11, column=7).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
-                        sheet.cell(row=11, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))
-                        
+                        sheet.cell(row=11, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=11, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=11, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=11, column=7).border = Border(left=Side(style="thick"),
+                                                                     bottom=Side(style="thick"))
+                        sheet.cell(row=11, column=8).border = Border(right=Side(style="thick"),
+                                                                     bottom=Side(style="thick"))
+
                         # row 12
-                        sheet.cell(row=12, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=12, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=12, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=12, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=12, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=12, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
                         sheet.cell(row=12, column=7).border = Border(left=Side(style="thick"))
                         sheet.cell(row=12, column=8).border = Border(right=Side(style="thick"))
-                        
+
                         # row 13
-                        sheet.cell(row=13, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=13, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=13, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=13, column=7).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
-                        sheet.cell(row=13, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))
-                        
-                        
+                        sheet.cell(row=13, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=13, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=13, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=13, column=7).border = Border(left=Side(style="thick"),
+                                                                     bottom=Side(style="thick"))
+                        sheet.cell(row=13, column=8).border = Border(right=Side(style="thick"),
+                                                                     bottom=Side(style="thick"))
+
                         # row 14
-                        sheet.cell(row=14, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=14, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=14, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=14, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=14, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=14, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
                         sheet.cell(row=14, column=7).border = Border(left=Side(style="thick"))
                         sheet.cell(row=14, column=8).border = Border(right=Side(style="thick"))
-                        
+
                         # row 15
-                        sheet.cell(row=15, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=15, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=15, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=15, column=7).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
-                        sheet.cell(row=15, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))
-                        
-                        
+                        sheet.cell(row=15, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=15, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=15, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=15, column=7).border = Border(left=Side(style="thick"),
+                                                                     bottom=Side(style="thick"))
+                        sheet.cell(row=15, column=8).border = Border(right=Side(style="thick"),
+                                                                     bottom=Side(style="thick"))
+
                         # row 16
-                        sheet.cell(row=16, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=16, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=16, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=16, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=16, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=16, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
                         sheet.cell(row=16, column=7).border = Border(left=Side(style="thick"))
                         sheet.cell(row=16, column=8).border = Border(right=Side(style="thick"))
-                        
+
                         # row 17
-                        sheet.cell(row=17, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=17, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=17, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=17, column=7).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
-                        sheet.cell(row=17, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))                        
-                        
-                        
+                        sheet.cell(row=17, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=17, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=17, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=17, column=7).border = Border(left=Side(style="thick"),
+                                                                     bottom=Side(style="thick"))
+                        sheet.cell(row=17, column=8).border = Border(right=Side(style="thick"),
+                                                                     bottom=Side(style="thick"))
+
                         # row 18
-                        sheet.cell(row=18, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=18, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=18, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=18, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=18, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=18, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
                         sheet.cell(row=18, column=7).border = Border(left=Side(style="thick"))
                         sheet.cell(row=18, column=8).border = Border(right=Side(style="thick"))
-                        
+
                         # row 19
-                        sheet.cell(row=19, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=19, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=19, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=19, column=7).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
-                        sheet.cell(row=19, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))                        
-                                                
+                        sheet.cell(row=19, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=19, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=19, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=19, column=7).border = Border(left=Side(style="thick"),
+                                                                     bottom=Side(style="thick"))
+                        sheet.cell(row=19, column=8).border = Border(right=Side(style="thick"),
+                                                                     bottom=Side(style="thick"))
+
                         # row 20
-                        sheet.cell(row=20, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=20, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=20, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
+                        sheet.cell(row=20, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=20, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=20, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
                         sheet.cell(row=20, column=7).border = Border(left=Side(style="thick"))
                         sheet.cell(row=20, column=8).border = Border(right=Side(style="thick"))
-                        
+
                         # row 21
-                        sheet.cell(row=21, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=21, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=21, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=21, column=7).border = Border(left=Side(style="thick"), bottom=Side(style="thick"))
-                        sheet.cell(row=21, column=8).border = Border(right=Side(style="thick"), bottom=Side(style="thick"))    
-                        
+                        sheet.cell(row=21, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=21, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=21, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=21, column=7).border = Border(left=Side(style="thick"),
+                                                                     bottom=Side(style="thick"))
+                        sheet.cell(row=21, column=8).border = Border(right=Side(style="thick"),
+                                                                     bottom=Side(style="thick"))
+
                         # row 22
-                        sheet.cell(row=22, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=22, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=22, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))            
-                        
+                        sheet.cell(row=22, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=22, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=22, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+
                         # row 23
-                        sheet.cell(row=23, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=23, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=23, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))               
-                        
-                        
+                        sheet.cell(row=23, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=23, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=23, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+
                         # row 24
-                        sheet.cell(row=24, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=24, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=24, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        
-                        
+                        sheet.cell(row=24, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=24, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=24, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+
                         # row 25
-                        sheet.cell(row=25, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=25, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=25, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        
+                        sheet.cell(row=25, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=25, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=25, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+
                         # row 26
-                        sheet.cell(row=26, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=26, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=26, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                                                
+                        sheet.cell(row=26, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=26, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=26, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+
                         # row 27
-                        sheet.cell(row=27, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=27, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=27, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                                                
+                        sheet.cell(row=27, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=27, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=27, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+
                         # row 28
-                        sheet.cell(row=28, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=28, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=28, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                                                
+                        sheet.cell(row=28, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=28, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=28, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+
                         # row 29
-                        sheet.cell(row=29, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=29, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=29, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                                                
+                        sheet.cell(row=29, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=29, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=29, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+
                         # row 30
-                        sheet.cell(row=30, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=30, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=30, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                                                
+                        sheet.cell(row=30, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=30, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=30, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+
                         # row 31
-                        sheet.cell(row=31, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=31, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=31, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                                                                        
+                        sheet.cell(row=31, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=31, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=31, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+
                         # row 32
-                        sheet.cell(row=32, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=32, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=32, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                                                                        
+                        sheet.cell(row=32, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=32, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=32, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+
                         # row 33
-                        sheet.cell(row=33, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=33, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=33, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                                                                        
+                        sheet.cell(row=33, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=33, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=33, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+
                         # row 34
-                        sheet.cell(row=34, column=1).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=34, column=2).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        sheet.cell(row=34, column=3).border = Border(left=Side(style="thick"), right=Side(style="thick"))
-                        
+                        sheet.cell(row=34, column=1).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=34, column=2).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+                        sheet.cell(row=34, column=3).border = Border(left=Side(style="thick"),
+                                                                     right=Side(style="thick"))
+
                         img = Image.open("my_image.png")
                         img = openpyxl.drawing.image.Image("my_image.png")
                         sheet.add_image(img, "D10")
@@ -3023,7 +3111,6 @@ def usr_log_in():
                         tko.destroy()
                         root.deiconify()
 
-
                 def back():
                     tko.destroy()
                     root.deiconify()
@@ -3037,6 +3124,16 @@ def usr_log_in():
 
                 menubar = Menu(tko)
                 tko.config(menu=menubar)
+
+                options = [1,2,3,5,10]	
+                stroke_size = IntVar(tko)	
+                stroke_size.set(1)	
+                textValue = StringVar(tko)	
+                optionShape = ["Text","Rectangle","Line","Circle"]	
+                shape_type = StringVar(tko)	
+                shape_type.set("Text")	
+                color = StringVar(tko)	
+                color.set("black")
 
                 # pack to screen
                 # calculation frame
@@ -3125,6 +3222,7 @@ def usr_log_in():
                 unit_box_cb = ttk.Combobox(heading_frame, width=25, textvariable=n, justify='center')
                 unit_box_cb.config(values=('m', 'm2', 'm3', 'kg', 'item', 'no'))
                 unit_box_cb.set('Please Select One')
+                unit_box_cb.bind('<<ComboboxSelected>>',lambda x: unit_confirm())
                 unit_box_cb.grid(row=1, column=3)
 
                 job_box = Entry((job_frame), width=33, justify='center')
@@ -3143,7 +3241,6 @@ def usr_log_in():
                 element_box.config(values=('1', '2', '3', '4', '5', '6', '7', '8', '9', '10'))
                 # element_box = Entry(job_frame, width=35, justify='center')
                 element_box.grid(row=1, column=2)
-
 
                 slipTextVariable = StringVar()
                 slip_box = ttk.Combobox(job_frame, width=28, textvariable=slipTextVariable, justify='center')
@@ -3409,8 +3506,8 @@ def usr_log_in():
                 total_cost_box.insert(0, 0)
 
                 # button confirm unit
-                confirm = Button(tko, text="CONFIRM UNIT", command=unit_confirm, width=21, bg="yellow")
-                confirm.place(x=625, y=420)
+                #confirm = Button(tko, text="CONFIRM UNIT", command=unit_confirm, width=21, bg="yellow")
+                #confirm.place(x=625, y=420)
 
                 # button calculation
                 calculation = Button(tko, text="CALCULATE", width=21, command=calculate)
@@ -3438,62 +3535,135 @@ def usr_log_in():
                     current_x, current_y = event.x, event.y
 
                 def show_color(new_color):
-                    global color
-                    color = new_color
+                    color.set(new_color)	
+                	
+                def selectColor():	
+                    selectedColor = colorchooser.askcolor("blue" , title="Select Color")	
+                    if selectedColor[1] == None :	
+                        show_color("black")	
+                    else:	
+                        show_color(selectedColor[1])              
 
                 def addLine(event):
                     global current_x, current_y
-                    if not (event.x < 35 and event.y < 600):
-                        canvas.create_line((current_x, current_y, event.x, event.y), width=5, fill=color, capstyle=ROUND,
-                                        smooth=True)
+                    if not (event.x < 50 and event.y < 450) and (event.x>50 and event.y>42):
+                        canvas.create_line((current_x, current_y, event.x, event.y), width=stroke_size.get(), fill=color.get(),
+                                           capstyle=ROUND,
+                                           smooth=True)
                         current_x, current_y = event.x, event.y
 
-                    
+                def selectShape(): 	
+                    if(shape_type.get() == "Circle"): 	
+                        canvas.bind("<ButtonPress-2>", draw_shape)	
+                        canvas.bind("<ButtonRelease-2>", end_circle)	
+                    elif(shape_type.get() == "Text"):	
+                        canvas.bind("<ButtonPress-2>", draw_shape)	
+                        canvas.bind("<ButtonRelease-2>", end_text)	
+                        canvas.bind("<Button-2>", writeText)	
+                    elif(shape_type.get()=="Rectangle"):	
+                        canvas.bind("<ButtonPress-2>", draw_shape)	
+                        canvas.bind("<ButtonRelease-2>", end_rect)	
+                    elif(shape_type.get()=="Line"):	
+                        canvas.bind("<ButtonPress-2>", draw_shape)	
+                        canvas.bind("<ButtonRelease-2>", end_line)	
+                def draw_shape(event):	
+                    global shape_x, shape_y	
+                    shape_x, shape_y = event.x, event.y	
+                def end_circle(event):	
+                    x1, y1 = shape_x, shape_y	
+                    x2, y2 = event.x, event.y	
+                    if not (event.x < 50 and event.y < 450) and (event.x>50 and event.y>42):	
+                     canvas.create_oval(x1, y1, x2, y2, outline=color.get())	
+                def end_text(event):	
+                    x1, y1 = shape_x, shape_y	
+                    x2, y2 = event.x, event.y	
+                def end_rect(event):	
+                    x1, y1 = shape_x, shape_y	
+                    x2, y2 = event.x, event.y	
+                    if not (event.x < 50 and event.y < 450) and (event.x>50 and event.y>42):	
+                        canvas.create_rectangle(x1, y1, x2, y2, outline=color.get())	
+                def end_line(event):	
+                    x1, y1 = shape_x, shape_y	
+                    x2, y2 = event.x, event.y	
+                    if not (event.x < 50 and event.y < 450) and (event.x>50 and event.y>42):	
+                        canvas.create_line(x1, y1, x2, y2, fill=color.get())	
+                    	
+                def writeText(event):	
+                    if not (event.x < 50 and event.y < 450) and (event.x>50 and event.y>42):	
+                        canvas.create_text(event.x , event.y , text=textValue.get())	
+
                 canvas = Canvas(tko, background='white')
                 canvas.place(x=304, y=131, height=463, width=306)
                 current_x, current_y = 0, 0
 
                 canvas.bind('<Button-1>', locate_xy)
                 canvas.bind('<B1-Motion>', addLine)
+                canvas.bind("<ButtonPress-2>", draw_shape)	
+                canvas.bind("<ButtonRelease-2>", end_text)	
+                canvas.bind("<Button-2>", writeText)
                 canvas.bind("<Double-1>", new_canvas)
 
                 def display_pallete():
-
-                    id = canvas.create_rectangle((10, 10, 30, 30), fill="black")
-                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color("black"))
-
-                    # id = canvas.create_rectangle((10, 40, 30, 60), fill="white")
-                    # canvas.tag_bind(id, '<Button-1>', lambda x: show_color("white"))
-
-                    id = canvas.create_rectangle((10, 40, 30, 60), fill="brown4")
-                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color("brown4"))
-
-                    id = canvas.create_rectangle((10, 70, 30, 90), fill="red")
-                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color("red"))
-
-                    id = canvas.create_rectangle((10, 100, 30, 120), fill="yellow")
-                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color("yellow"))
-
-                    id = canvas.create_rectangle((10, 130, 30, 150), fill="blue")
-                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color('blue'))
-
-                    id = canvas.create_rectangle((10, 160, 30, 180), fill="green")
-                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color('green'))
-
-                    id = canvas.create_rectangle((10, 190, 30, 210), fill="purple")
-                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color('purple'))
-
-                    id = canvas.create_rectangle((10, 220, 30, 240), fill="orange")
-                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color('orange'))
+                    	                    #sizeLabel = Label(tko, text='Size : ', fg='black', bg='white',font=('Times', 10))	
+                    #sizeLabel.place(x=310,y=141)  	
+                    sizeList = OptionMenu(tko , stroke_size , *options)	
+                    sizeList.place(x=310, y=141)	
+                    entryButton = Entry(tko, textvariable=textValue, bg="white" , width=20,highlightthickness=2 )	
+                    entryButton.place(x=370, y=141)	
+                    shapeList = OptionMenu(tko , shape_type , *optionShape, command=lambda x:selectShape())	
+                    shapeList.place(x=510, y=141)	
+                    colorBoxButton = Button(tko , text="Color" , width=4 , command=selectColor)	
+                    colorBoxButton.place(x=310, y=181)	
+                    #1---    	
+                    #id = canvas.create_rectangle((10, 10, 30, 30), fill="black")	
+                    #canvas.tag_bind(id, '<Button-1>', lambda x: show_color("black"))	
+                    #--	
+                    #id = canvas.create_rectangle((10, 40, 30, 60), fill="white")	
+                    #canvas.tag_bind(id, '<Button-1>', lambda x: show_color("white"))	
+                    #2---  	
+                    #id = canvas.create_rectangle((10, 40, 30, 60), fill="brown4")	
+                    #canvas.tag_bind(id, '<Button-1>', lambda x: show_color("brown4"))	
+                    #--	
+                    #3--	
+                    #id = canvas.create_rectangle((10, 70, 30, 90), fill="red")	
+                    #canvas.tag_bind(id, '<Button-1>', lambda x: show_color("red"))	
+                    #--	
+                    #4--	
+                    id = canvas.create_rectangle((10, 100, 30, 120), fill="black")	
+                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color("black"))	
+                    #5--	
+                    id = canvas.create_rectangle((10, 130, 30, 150), fill="blue")	
+                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color('blue'))	
+                    #6	
+                    id = canvas.create_rectangle((10, 160, 30, 180), fill="red")	
+                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color('red'))	
+                    #7	
+                    id = canvas.create_rectangle((10, 190, 30, 210), fill="green")	
+                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color('green'))	
+                    #8	
+                    id = canvas.create_rectangle((10, 220, 30, 240), fill="purple")	
+                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color('purple'))	
+                    #8	
+                    id = canvas.create_rectangle((10, 250, 30, 270), fill="yellow")	
+                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color('yellow'))	
+                    #9	
+                    id = canvas.create_rectangle((10, 280, 30, 300), fill="orange")	
+                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color('orange'))	
+                    #9	
+                    id = canvas.create_rectangle((10, 310, 30, 330), fill="brown4")	
+                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color('brown4'))	
+                    	
+                    # id = canvas.create_rectangle((10, 400, 30, 420), fill="white")	
+                    # id = canvas.create_text(20,400,fill="black",font="Times 16",text="Ʉ")	
+                    #9	
+                    id = canvas.create_text(20,400,fill="black",font="Times 16",text="⌫")	
+                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color("white"))	
+                    	
+                    #10	
+                    #id = canvas.create_text(20,450,fill="black",font="Times 16",text="↩")	
+                    #canvas.tag_bind(id, '<Button-1>', lambda x: show_color("white"))	
                     
-                    # id = canvas.create_rectangle((10, 400, 30, 420), fill="white")
-                    # id = canvas.create_text(20,400,fill="black",font="Times 16",text="Ʉ")
-                    id = canvas.create_text(20,400,fill="black",font="Times 16",text="⌫")
-                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color("white"))
-                    
-                    id = canvas.create_text(20,450,fill="black",font="Times 16",text="↩")
-                    canvas.tag_bind(id, '<Button-1>', lambda x: show_color("white"))
-                    
+
                     # issue loading image here
                     # eraserImage = Image.open("eraser.png")
                     # eraserImg = ImageTk.PhotoImage(eraserImage, master=self)
@@ -3563,7 +3733,7 @@ def usr_log_in():
 
                     # save new data
                     my_tree.item(selected, text="",
-                        values=(item_box.get(), clause_box.get(), unit_box.get(), quantity_box.get()))
+                                 values=(item_box.get(), clause_box.get(), unit_box.get(), quantity_box.get()))
 
                     # clear entry boxes
                     item_box.delete(0, END)
@@ -3603,7 +3773,7 @@ def usr_log_in():
             save_record.grid(row=0, column=1, padx=10)
 
             # button query list
-            query_list= Button(button_frame, text="QUERY LIST", command= query,width=15)
+            query_list = Button(button_frame, text="QUERY LIST", command=query, width=15)
             query_list.grid(row=2, column=1, pady=10)
 
             # bind select record
@@ -3622,6 +3792,7 @@ def usr_log_in():
         is_signup = messagebox.askyesno('Welcome!', "Account not exist.Do you want to register for FAST Takeoff?")
         if is_signup:
             usr_sign_up()
+
 
 # SIGN UP FUNCTIOM
 def usr_sign_up():
@@ -3668,19 +3839,21 @@ def usr_sign_up():
     Entry(window_sign_up, textvariable=new_pwd_confirm, show='*').place(x=160, y=90)
     # CONFIRM SIGN UP BUTTON
     bt_confirm_sign_up = Button(window_sign_up, text='CONFIRM SIGN UP',
-                                   command=signtowcg)
+                                command=signtowcg)
     bt_confirm_sign_up.place(x=150, y=130)
+
 
 # EXIT FUNCTION
 def usr_sign_quit():
     window.destroy()
 
+
 # LOG IN, REGISTER AND EXIT BUTTON
-bt_login = Button(window, text='LOG IN',bg="#DAF7A6", command=usr_log_in)
+bt_login = Button(window, text='LOG IN', bg="#DAF7A6", command=usr_log_in)
 bt_login.place(x=100, y=230)
-bt_logup = Button(window, text='REGISTER',bg="#DAF7A6", command=usr_sign_up)
+bt_logup = Button(window, text='REGISTER', bg="#DAF7A6", command=usr_sign_up)
 bt_logup.place(x=175, y=230)
-bt_logquit = Button(window, text='EXIT',bg= "#EE123A", fg= "white", command=usr_sign_quit)
+bt_logquit = Button(window, text='EXIT', bg="#EE123A", fg="white", command=usr_sign_quit)
 bt_logquit.place(x=260, y=230)
 
 window.mainloop()
